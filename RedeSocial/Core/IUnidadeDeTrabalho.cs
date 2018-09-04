@@ -5,6 +5,9 @@ using System;
 
 namespace Core
 {
+    /// <summary>
+    ///     Interface que define o comportamento do intermediário entre as transações do framework de persistência e a aplicação.
+    /// </summary>
     public interface IUnidadeDeTrabalho : IDisposable
     {
         IComentarioRepositorio Comentarios { get; }
