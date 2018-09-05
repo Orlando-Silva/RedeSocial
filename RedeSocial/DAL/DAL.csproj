@@ -48,11 +48,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contexto\RedeSocialContexto.cs" />
+    <Compile Include="FluentAPI\ComentarioConfiguracao.cs" />
+    <Compile Include="FluentAPI\FotoDePerfilConfiguracao.cs" />
+    <Compile Include="FluentAPI\PostagemConfiguracao.cs" />
+    <Compile Include="FluentAPI\UsuarioConfiguracao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositórios\ComentarioRepositorio.cs" />
+    <Compile Include="Repositórios\FotoDePerfilRepositorio.cs" />
+    <Compile Include="Repositórios\PostagemRepositorio.cs" />
+    <Compile Include="Repositórios\Repositorio.cs" />
+    <Compile Include="Repositórios\UsuarioRepositorio.cs" />
+    <Compile Include="UnidadeDeTrabalho.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{6947141C-24A7-4512-9AB9-2EB3EF197898}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
