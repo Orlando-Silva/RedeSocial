@@ -17,10 +17,16 @@ namespace DAL.FluentAPI
             Property(_ => _.Login)
                 .HasMaxLength(64);
 
+            Property(_ => _.Telefone)
+                .HasMaxLength(64);
+
+            Property(_ => _.Email)
+                .HasMaxLength(64);
+
             Property(_ => _.Senha)
                 .HasMaxLength(512);
 
-            Property(_ => _.Rua)
+            Property(_ => _.Endereco)
                .HasMaxLength(64);
 
             Property(_ => _.Cidade)

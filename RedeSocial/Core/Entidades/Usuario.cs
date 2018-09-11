@@ -1,5 +1,6 @@
 ﻿#region --Using--
 using Core.Enums;
+using System;
 using System.Collections.Generic;
 #endregion
 
@@ -11,11 +12,15 @@ namespace Core.Entidades
 
         public string Nome { get; set; }
 
+        public string Email { get; set; }
+
         public string Login { get; set; }
 
         public string Senha { get; set; }
 
-        public string Rua { get; set; }
+        public string Telefone { get; set; }
+
+        public string Endereco { get; set; }
 
         public string Cidade { get; set; }
 
@@ -24,6 +29,10 @@ namespace Core.Entidades
         public string Pais { get; set; }
 
         public string Descricao { get; set; }
+
+        public DateTime Criado { get; set; }
+
+        public DateTime DataDeNascimento { get; set; }
 
         public Status Status { get; set; }
 

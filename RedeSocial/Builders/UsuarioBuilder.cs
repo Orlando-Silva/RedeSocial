@@ -33,15 +33,39 @@ namespace Builders
             return this;
         }
 
+        public UsuarioBuilder ComEmail(string email)
+        {
+            Entidade.Email = email ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(email) } não pode ser nulo.", paramName: nameof(email));
+            return this;
+        }
+
         public UsuarioBuilder ComLogin(string login)
         {
             Entidade.Login = login ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(login) } não pode ser nulo.", paramName: nameof(login));
             return this;
         }
 
-        public UsuarioBuilder NaRua(string rua)
+        public UsuarioBuilder ComTelefone(string telefone)
         {
-            Entidade.Rua = rua ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(rua) } não pode ser nulo.", paramName: nameof(rua));
+            Entidade.Telefone = telefone ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(telefone) } não pode ser nulo.", paramName: nameof(telefone));
+            return this;
+        }
+
+        public UsuarioBuilder CriadoEm(DateTime criado)
+        {
+            Entidade.Criado = criado ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(criado) } não pode ser nulo.", paramName: nameof(criado));
+            return this;
+        }
+
+        public UsuarioBuilder NasceuEm(DateTime dataDeNascimento)
+        {
+            Entidade.DataDeNascimento = dataDeNascimento ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(dataDeNascimento) } não pode ser nulo.", paramName: nameof(dataDeNascimento));
+            return this;
+        }
+
+        public UsuarioBuilder NoEndereco(string endereco)
+        {
+            Entidade.Endereco = endereco ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(endereco) } não pode ser nulo.", paramName: nameof(endereco));
             return this;
         }
 

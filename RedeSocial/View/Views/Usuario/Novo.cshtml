@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Crie Uma Conta";
+    Layout = "~/Views/Shared/_LayoutPublica.cshtml";
+}
+
+
+<!-- multistep form -->
+<form id="msform">
+    <!-- progressbar -->
+    <ul id="progressbar">
+        <li class="active">Detalhes da Conta</li>
+        <li>Detalhes Pessoais</li>
+        <li>Endereço</li>
+    </ul>
+    <!-- fieldsets -->
+    <fieldset>
+        <h3 class="fs-title">Primeira Etapa</h3>
+        <h3 class="fs-subtitle">Dados da conta</h3>
+        <input type="text" name="login" placeholder="Login" />
+        <input type="email" name="email" placeholder="Email" />
+        <input type="password" name="pass" placeholder="Senha" />
+        <input type="password" name="cpass" placeholder="Confirme sua senha" />
+        <i class="next action-button-icon far fa-arrow-alt-circle-right"> </i>
+    </fieldset>
+    <fieldset>
+        <h2 class="fs-title">Segunda Etapa</h2>
+        <h3 class="fs-subtitle">Dados pessoais</h3>
+        <input type="text" name="nome" placeholder="Nome Completo" />
+        <input type="tel" name="telefone" placeholder="Telefone" />
+        <input type="date" name="dataDeNascimento" placeholder="Data de Nascimento" />
+        <i class="previous action-button-icon far fa-arrow-alt-circle-left"></i>
+        <i class="next action-button-icon far fa-arrow-alt-circle-right"> </i>
+    </fieldset>
+    <fieldset>
+        <h2 class="fs-title">Última Etapa</h2>
+        <h3 class="fs-subtitle">Endereço</h3>
+        <input type="text" name="pais" placeholder="Páis" />
+        <input type="text" name="estado" placeholder="Estado" />
+        <input type="text" name="cidade" placeholder="Cidade" />
+        <input type="text" name="rua" placeholder="Endereço" />
+        <input type="text" name="complemento" placeholder="Complemento" />
+        <i class="previous action-button-icon far fa-arrow-alt-circle-left"></i>
+        <i type="submit" class="submit action-button-icon far fa-arrow-alt-circle-right"></i>
+    </fieldset>
+</form>
+
