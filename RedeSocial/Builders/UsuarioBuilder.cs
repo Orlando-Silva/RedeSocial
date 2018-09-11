@@ -10,6 +10,13 @@ namespace Builders
 {
     public class UsuarioBuilder : Builder<Usuario>
     {
+        #region --Construtor--
+        public UsuarioBuilder(Usuario _usuario) : base(_usuario)
+        {
+
+        }
+        #endregion
+
         #region --Construtores de Usuário--
         public UsuarioBuilder ComNome(string nome)
         {

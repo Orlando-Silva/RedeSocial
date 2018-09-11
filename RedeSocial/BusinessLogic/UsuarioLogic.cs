@@ -20,11 +20,11 @@ namespace BusinessLogic
         #region --Métodos Privados--
         private static Usuario Preparar(Usuario usuario)
         {
-            if (usuario is null)
-                throw new ArgumentNullException("O usuário não pode ser nulo!");
+            if (usuario is null) 
+                throw new ArgumentNullException(message: $"O parâmetro { nameof(usuario) } não pode ser nulo.", paramName: nameof(usuario));
 
             return new UsuarioBuilder(usuario)
-                            .ComSenha(usuario.Senha);      
+                            .ComSenha(usuario.Senha);
         }
         #endregion
     }
