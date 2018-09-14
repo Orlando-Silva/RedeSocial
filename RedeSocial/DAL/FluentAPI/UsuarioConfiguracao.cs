@@ -26,6 +26,10 @@ namespace DAL.FluentAPI
             Property(_ => _.Senha)
                 .HasMaxLength(512);
 
+            Property(_ => _.Complemento)
+                .IsOptional()
+                .HasMaxLength(64);
+
             Property(_ => _.Endereco)
                .HasMaxLength(64);
 

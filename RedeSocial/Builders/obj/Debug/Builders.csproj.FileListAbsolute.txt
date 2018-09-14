@@ -1,0 +1,11 @@
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Builders\bin\Debug\Builders.dll
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Builders\bin\Debug\Builders.pdb
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Builders\bin\Debug\Core.dll
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Builders\bin\Debug\Helpers.dll
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Builders\bin\Debug\Core.pdb
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Builders\bin\Debug\Helpers.pdb
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Builders\obj\Debug\Builders.csprojAssemblyReference.cache
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Builders\obj\Debug\Builders.csproj.CoreCompileInputs.cache
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Builders\obj\Debug\Builders.csproj.CopyComplete
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Builders\obj\Debug\Builders.dll
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Builders\obj\Debug\Builders.pdb

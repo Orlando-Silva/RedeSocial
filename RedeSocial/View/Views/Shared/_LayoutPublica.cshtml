@@ -19,7 +19,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Home", nameof(HomeController.Index), nameof(HomeController).Replace("Controller",string.Empty), new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Home", nameof(HomeController.Index), nameof(HomeController).Replace("Controller", string.Empty), new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse pull-right">
                 <ul class="nav navbar-nav">
@@ -31,11 +31,10 @@
 
     <div class="container body-content">
         @RenderBody()
-        <footer>
-        </footer>
+        <footer></footer>
     </div>
 
-    <script src="~/Scripts/jquery-2.1.3.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery.easing-1.3.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/loginFormSteps.js"></script>

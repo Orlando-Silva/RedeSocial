@@ -75,6 +75,13 @@ body.ms-form-body {
     font-weight: bold;
 }
 
+.action-button-icon-small {
+    display: flex !important;
+    font-size: 24px;
+    color: #27AE60;
+    cursor: pointer;
+}
+
 #msform .action-button:hover, #msform .action-button:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }

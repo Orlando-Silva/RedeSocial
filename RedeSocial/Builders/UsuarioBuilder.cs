@@ -53,13 +53,13 @@ namespace Builders
 
         public UsuarioBuilder CriadoEm(DateTime criado)
         {
-            Entidade.Criado = criado ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(criado) } não pode ser nulo.", paramName: nameof(criado));
+            Entidade.Criado = criado;
             return this;
         }
 
         public UsuarioBuilder NasceuEm(DateTime dataDeNascimento)
         {
-            Entidade.DataDeNascimento = dataDeNascimento ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(dataDeNascimento) } não pode ser nulo.", paramName: nameof(dataDeNascimento));
+            Entidade.DataDeNascimento = dataDeNascimento;
             return this;
         }
 
