@@ -4,41 +4,45 @@ var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function () {
-    if (animating) return false;
-    animating = true;
 
-    current_fs = $(this).parent();
-    next_fs = $(this).parent().next();
+    if (isTabValid($(this).parent())) {
 
-    //activate next step on progressbar using the index of next_fs
-    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+        if (animating) return false;
+        animating = true;
 
-    //show the next fieldset
-    next_fs.show();
-    //hide the current fieldset with style
-    current_fs.animate({ opacity: 0 }, {
-        step: function (now, mx) {
-            //as the opacity of current_fs reduces to 0 - stored in "now"
-            //1. scale current_fs down to 80%
-            scale = 1 - (1 - now) * 0.2;
-            //2. bring next_fs from the right(50%)
-            left = (now * 50) + "%";
-            //3. increase opacity of next_fs to 1 as it moves in
-            opacity = 1 - now;
-            current_fs.css({
-                'transform': 'scale(' + scale + ')',
-                'position': 'absolute'
-            });
-            next_fs.css({ 'left': left, 'opacity': opacity });
-        },
-        duration: 800,
-        complete: function () {
-            current_fs.hide();
-            animating = false;
-        },
-        //this comes from the custom easing plugin
-        easing: 'easeInOutBack'
-    });
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
+
+        //activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({ opacity: 0 }, {
+            step: function (now, mx) {
+                //as the opacity of current_fs reduces to 0 - stored in "now"
+                //1. scale current_fs down to 80%
+                scale = 1 - (1 - now) * 0.2;
+                //2. bring next_fs from the right(50%)
+                left = (now * 50) + "%";
+                //3. increase opacity of next_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({
+                    'transform': 'scale(' + scale + ')',
+                    'position': 'absolute'
+                });
+                next_fs.css({ 'left': left, 'opacity': opacity });
+            },
+            duration: 800,
+            complete: function () {
+                current_fs.hide();
+                animating = false;
+            },
+            //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    }
 });
 
 $(".previous").click(function () {
@@ -77,5 +81,106 @@ $(".previous").click(function () {
 });
 
 $(".submit").click(function () {
-    return false;
-})
+    return ValidateAddressInfo();
+});
+
+function isTabValid(element) {
+
+    switch (element[0].id) {
+        case "DadosConta":
+            return ValidateAccountInfo();
+        case "DadosPessoais":
+            return ValidatePersonalInfo();
+        case "DadosEndereco":
+            return ValidateAddressInfo();
+    }
+}
+
+function ValidateAccountInfo() {
+
+    if (ObligatoryFieldIsEmpty($("#Login")))
+        return false;
+    
+    if (ObligatoryFieldIsEmpty($("#Email")))
+        return false;
+
+    var email = $("#Email").val();
+    if (email.match(/\w+([@])+\w/g) === null) {
+        AppendErrorMessage($("#Email"), 'Insira um email válido.');
+        return false;
+    }
+
+    
+    if (ObligatoryFieldIsEmpty($("#Senha")))
+        return false;
+
+    if (ObligatoryFieldIsEmpty($("#ConfirmacaoSenha")))
+        return false;  
+
+    if ($("#Senha").val() !== $("#ConfirmacaoSenha").val()) {
+        AppendErrorMessage($("#Senha"), 'Os valores do campo "Senha" e "Confirme Sua Senha" devem ser iguais.');
+        return false;
+    }
+
+    return true;
+}
+
+function ValidatePersonalInfo() {
+
+    if (ObligatoryFieldIsEmpty($("#DataDeNascimento")))
+        return false;
+
+    if (ObligatoryFieldIsEmpty($("#Telefone")))
+        return false;
+
+    var nome = $("#Nome").val();
+    if (nome.match(/\w+\s+\w/g) === null) {
+        AppendErrorMessage($("#Nome"), 'Insira seu nome completo.');
+        return false;
+    }
+
+    return true;
+}
+
+function ValidateAddressInfo() {
+
+    if (ObligatoryFieldIsEmpty($("#Pais")))
+        return false;
+
+    if (ObligatoryFieldIsEmpty($("#Estado")))
+        return false;
+
+    if (ObligatoryFieldIsEmpty($("#Cidade")))
+        return false;
+
+    if (ObligatoryFieldIsEmpty($("#Endereco")))
+        return false;
+
+    if (ObligatoryFieldIsEmpty($("#Complemento")))
+        return false;
+
+    return true;
+}
+
+function ObligatoryFieldIsEmpty(element) {
+
+    if (element.val().length === 0 || element.val() === null) {
+        AppendErrorMessage(element, "O Campo " + element.attr('placeholder') + " é obrigatório.");
+        return true;
+    }
+}
+
+function AppendErrorMessage(element, errorMessage) {
+    element.attr('data-content', errorMessage);
+    element.attr('data-placement', 'bottom');
+    element.attr('data-animation', 'true');
+    element.addClass("popover-error");
+    element.popover('show');
+    setTimeout(function () {
+        element.removeAttr('data-content');
+        element.removeAttr('data-placement');
+        element.removeAttr('data-animation');
+        element.popover('hide');
+    }, 5000);
+
+}

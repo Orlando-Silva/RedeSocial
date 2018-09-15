@@ -45,27 +45,7 @@ namespace DAL.FluentAPI
             Property(_ => _.Descricao)
                .IsOptional()
                .HasMaxLength(512);
-
-            HasMany(_ => _.Amigos)
-                .WithMany(_ => _.Amigos)
-                .Map(m =>
-                {
-                    m.MapLeftKey("PrimeiroUsuario");
-                    m.MapRightKey("SegundoUsuario");
-                    m.ToTable("Amizades");
-                });
-
-            HasMany(_ => _.Fotos)
-                .WithRequired(_ => _.Usuario)
-                .HasForeignKey(_ => _.Usuario.ID);
-
-            HasMany(_ => _.Postagens)
-                .WithRequired(_ => _.Autor)
-                .HasForeignKey(_ => _.Autor.ID);
-
-            HasMany(_ => _.Comentarios)
-                .WithRequired(_ => _.Autor)
-                .HasForeignKey(_ => _.Autor.ID);
+                
         }
     }
 }

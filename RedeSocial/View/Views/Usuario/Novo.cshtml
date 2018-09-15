@@ -1,4 +1,4 @@
-﻿@model View.ViewModels.NovoUsuarioViewModel
+﻿@model Core.ViewModels.NovoUsuarioViewModel
 @using View.Controllers;
 @{
     ViewBag.Title = "Crie Uma Conta";
@@ -24,16 +24,16 @@
         <li>Endereço</li>
     </ul>
     <!-- fieldsets -->
-    <fieldset>
+    <fieldset id="DadosConta">
         <h3 class="fs-title">Primeira Etapa</h3>
         <h3 class="fs-subtitle">Dados da conta</h3>
-        @Html.TextBoxFor(expression: _ => _.Login, htmlAttributes: new { placeholder = "Login", name = "login", type = "text", required = "required" })
-        @Html.TextBoxFor(expression: _ => _.Email, htmlAttributes: new { placeholder = "Email", name = "email", type = "email", required = "required" })
-        @Html.TextBoxFor(expression: _ => _.Senha, htmlAttributes: new { placeholder = "Senha", name = "pass", type = "password", required = "required" })
-        @Html.TextBoxFor(expression: _ => _.ConfirmacaoSenha, htmlAttributes: new { placeholder = "Confirme sua senha", name = "cpass", type = "password", required = "required" })
-        <i class="next action-button-icon far fa-arrow-alt-circle-right"> </i>
+        @Html.TextBoxFor(expression: _ => _.Login, htmlAttributes: new { placeholder = "Login", type = "text", required = "required" })
+        @Html.TextBoxFor(expression: _ => _.Email, htmlAttributes: new { placeholder = "Email", type = "email", required = "required" })
+        @Html.TextBoxFor(expression: _ => _.Senha, htmlAttributes: new { placeholder = "Senha", type = "password", required = "required" })
+        @Html.TextBoxFor(expression: _ => _.ConfirmacaoSenha, htmlAttributes: new { placeholder = "Confirme sua senha", type = "password", required = "required" })
+        <i class="next action-button-icon far fa-arrow-alt-circle-right"></i>
     </fieldset>
-    <fieldset>
+    <fieldset id="DadosPessoais">
         <h2 class="fs-title">Segunda Etapa</h2>
         <h3 class="fs-subtitle">Dados pessoais</h3>
         @Html.TextBoxFor(expression: _ => _.Nome, htmlAttributes: new { placeholder = "Nome Completo", name = "nome", type = "text", required = "required" })
@@ -42,43 +42,26 @@
         <i class="previous action-button-icon far fa-arrow-alt-circle-left"></i>
         <i class="next action-button-icon far fa-arrow-alt-circle-right"> </i>
     </fieldset>
-    <fieldset>
+    <fieldset id="DadosEndereco">
         <i class="previous action-button-icon-small far fa-arrow-alt-circle-left"></i>
         <h2 class="fs-title">Última Etapa</h2>
         <h3 class="fs-subtitle">Endereço</h3>
-        @Html.TextBoxFor(expression: _ => _.Pais, htmlAttributes: new { placeholder = "País", name = "pais", type = "text", required = "required" })
-        @Html.TextBoxFor(expression: _ => _.Estado, htmlAttributes: new { placeholder = "Estado", name = "estado", type = "text", required = "required" })
-        @Html.TextBoxFor(expression: _ => _.Cidade, htmlAttributes: new { placeholder = "Cidade", name = "cidade", type = "text", required = "required" })
-        @Html.TextBoxFor(expression: _ => _.Endereco, htmlAttributes: new { placeholder = "Endereço", name = "endereco", type = "text", required = "required" })
-        @Html.TextBoxFor(expression: _ => _.Complemento, htmlAttributes: new { placeholder = "Complemento", name = "complemento", type = "text" })
-        <input type="submit" class="action-button" value="Enviar" />
+        @Html.TextBoxFor(expression: _ => _.Pais, htmlAttributes: new { placeholder = "País", type = "text" })
+        @Html.TextBoxFor(expression: _ => _.Estado, htmlAttributes: new { placeholder = "Estado", type = "text", required = "required" })
+        @Html.TextBoxFor(expression: _ => _.Cidade, htmlAttributes: new { placeholder = "Cidade", type = "text", required = "required" })
+        @Html.TextBoxFor(expression: _ => _.Endereco, htmlAttributes: new { placeholder = "Endereço", type = "text", required = "required" })
+        @Html.TextBoxFor(expression: _ => _.Complemento, htmlAttributes: new { placeholder = "Complemento", type = "text" })
+        <input type="submit" class="action-button submit" value="Enviar" />
     </fieldset>
 }
 
-<script>
+<script type="text/javascript">
 
+    $(document).ready(function () {
 
-        $("#msform").validate({
-            rules: {
-                pais: "required",
-                estado: "required",
-                cidade: "required"
-            },
-            messages: {
-                pais: "Campo Obrigatório.",
-                estado: "Campo Obrigatório.",
-                cidade: "Campo Obrigatório."
-            },
-            errorPlacement: function (error, element) {
+        $("#Telefone").mask("(99) 9999-99999");
 
-                error.insertAfter(element);
-
-            }
-        });
-
-
-
-
+    });
 
 </script>
 

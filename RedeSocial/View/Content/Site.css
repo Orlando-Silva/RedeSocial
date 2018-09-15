@@ -75,6 +75,10 @@ body.ms-form-body {
     font-weight: bold;
 }
 
+.popover {
+    color: red;
+}
+
 .action-button-icon-small {
     display: flex !important;
     font-size: 24px;

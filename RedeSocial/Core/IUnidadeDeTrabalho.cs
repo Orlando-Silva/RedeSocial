@@ -18,6 +18,8 @@ namespace Core
 
         IUsuarioRepositorio Usuarios { get; }
 
+        IAmizadeRepositorio Amizades { get; }
+
         void Encerrar();
     }
 }

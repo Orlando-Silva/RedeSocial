@@ -21,5 +21,7 @@ namespace Core.Entidades
         public Status Status { get; set; }
 
         public Usuario Usuario { get; set; }
+
+        public int UsuarioID { get; set; }
     }
 }

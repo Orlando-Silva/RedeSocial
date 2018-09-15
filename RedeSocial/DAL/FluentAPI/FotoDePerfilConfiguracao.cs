@@ -28,7 +28,8 @@ namespace DAL.FluentAPI
 
             HasRequired(_ => _.Usuario)
                     .WithMany(_ => _.Fotos)
-                    .HasForeignKey(_ => _.Usuario.ID);
+                    .HasForeignKey(_ => _.UsuarioID)
+                    .WillCascadeOnDelete(false);
         }
     }
 }

@@ -17,6 +17,10 @@ namespace Core.Entidades
 
         public Postagem Postagem { get; set; }
 
+        public int PostagemID { get; set; }
+
         public Usuario Autor { get; set; }
+
+        public int AutorID { get; set; }
     }
 }

@@ -19,6 +19,8 @@ namespace DAL
         public IPostagemRepositorio Postagens { get; private set; }
 
         public IUsuarioRepositorio Usuarios { get; private set; }
+
+        public IAmizadeRepositorio Amizades { get; private set; }
         #endregion
 
         #region --Construtor--
@@ -29,6 +31,7 @@ namespace DAL
             FotosDePerfil = new FotoDePerfilRepositorio(_contexto);
             Postagens = new PostagemRepositorio(_contexto);
             Usuarios = new UsuarioRepositorio(_contexto);
+            Amizades = new AmizadeRepositorio(_contexto);
         }
         #endregion
 

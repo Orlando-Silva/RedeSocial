@@ -8,6 +8,8 @@ C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\bin\Debug\Core.pdb
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\bin\Debug\EntityFramework.xml
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.Migrations.InitialMigration.resources
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.csproj.GenerateResource.cache
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.dll

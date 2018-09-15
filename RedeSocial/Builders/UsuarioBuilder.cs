@@ -10,8 +10,13 @@ namespace Builders
 {
     public class UsuarioBuilder : Builder<Usuario>
     {
-        #region --Construtor--
+        #region --Construtores--
         public UsuarioBuilder(Usuario _usuario) : base(_usuario)
+        {
+
+        }
+
+        public UsuarioBuilder() : base()
         {
 
         }
@@ -87,9 +92,9 @@ namespace Builders
             return this;
         }
 
-        public UsuarioBuilder ComAmigos(IList<Usuario> amigos)
+        public UsuarioBuilder ComComplemento(string complemento)
         {
-            Entidade.Amigos = amigos.Any() ? amigos : throw new ArgumentNullException(message: $"O parâmetro { nameof(amigos) } não pode ser nulo.", paramName: nameof(amigos));
+            Entidade.Complemento = complemento ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(complemento) } não pode ser nulo.", paramName: nameof(complemento));
             return this;
         }
 

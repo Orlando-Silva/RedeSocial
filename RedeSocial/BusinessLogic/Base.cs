@@ -7,9 +7,11 @@ namespace BusinessLogic
 {
     public class Base
     {
-        protected static UnidadeDeTrabalho UnidadeDeTrabalho
-        {
-            get => UnidadeDeTrabalho is null ? new UnidadeDeTrabalho(new RedeSocialContexto()) : UnidadeDeTrabalho;
-        }
+        private readonly static UnidadeDeTrabalho UnidadeDeTrabalho = new UnidadeDeTrabalho(new RedeSocialContexto());
+
+        protected static UnidadeDeTrabalho BuscarUnidadeDeTrabalho() => UnidadeDeTrabalho ?? new UnidadeDeTrabalho(new RedeSocialContexto());
+
+
+
     }
 }

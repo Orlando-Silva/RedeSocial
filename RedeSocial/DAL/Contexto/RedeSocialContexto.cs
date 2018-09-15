@@ -19,7 +19,7 @@ namespace DAL.Contexto
         #endregion
 
         #region --Construtor--
-        public RedeSocialContexto() : base("name=localhost")
+        public RedeSocialContexto() : base("name=ConnectionStringlocalhost")
         {
 
         }
@@ -32,6 +32,7 @@ namespace DAL.Contexto
             modelBuilder.Configurations.Add(new FotoDePerfilConfiguracao());
             modelBuilder.Configurations.Add(new PostagemConfiguracao());
             modelBuilder.Configurations.Add(new UsuarioConfiguracao());
+            modelBuilder.Configurations.Add(new AmizadesConfiguracao());
         }
         #endregion
     }

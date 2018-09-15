@@ -38,8 +38,6 @@ namespace Core.Entidades
 
         public Status Status { get; set; }
 
-        public IList<Usuario> Amigos { get; set; }
-
         public IList<FotoDePerfil> Fotos { get; set; }
 
         public IList<Postagem> Postagens { get; set; }

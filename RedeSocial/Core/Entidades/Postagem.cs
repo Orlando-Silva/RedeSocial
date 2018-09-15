@@ -20,6 +20,8 @@ namespace Core.Entidades
 
         public Usuario Autor { get; set; }
 
+        public int AutorID { get; set; }
+
         public IList<Comentario> Comentarios { get; set; }
     }
 }

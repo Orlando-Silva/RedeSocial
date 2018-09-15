@@ -16,11 +16,13 @@ namespace DAL.FluentAPI
 
             HasRequired(_ => _.Postagem)
                     .WithMany(_ => _.Comentarios)
-                    .HasForeignKey(_ => _.Postagem.ID);
+                    .HasForeignKey(_ => _.PostagemID)
+                    .WillCascadeOnDelete(false);
 
             HasRequired(_ => _.Autor)
                     .WithMany(_ => _.Comentarios)
-                    .HasForeignKey(_ => _.Autor.ID);
+                    .HasForeignKey(_ => _.AutorID)
+                    .WillCascadeOnDelete(false);
         }
     }
 }
