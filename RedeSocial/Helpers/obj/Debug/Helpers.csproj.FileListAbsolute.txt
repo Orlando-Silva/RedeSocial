@@ -3,3 +3,4 @@ C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Helpers\bin\Debug\Helpers.pdb
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Helpers\obj\Debug\Helpers.csproj.CoreCompileInputs.cache
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Helpers\obj\Debug\Helpers.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Helpers\obj\Debug\Helpers.pdb
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Helpers\obj\Debug\Helpers.csprojAssemblyReference.cache

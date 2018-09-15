@@ -34,7 +34,7 @@ namespace Builders
             if (senha is null)
                 throw new ArgumentNullException(message: $"O parâmetro { nameof(senha) } não pode ser nulo.", paramName: nameof(senha));
 
-            Entidade.Senha = Seguranca.ComputeHash(senha, Seguranca.GenerateSalt()).ToString();
+            Entidade.Senha = Seguranca.Encrypt(senha).ToString();
             return this;
         }
 
