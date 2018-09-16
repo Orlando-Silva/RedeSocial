@@ -15,7 +15,7 @@ namespace View
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = nameof(HomeController).Replace("Controller", string.Empty), action = nameof(HomeController.Index), id = UrlParameter.Optional }
+                defaults: new { controller = nameof(UsuarioController).Replace("Controller", string.Empty), action = nameof(UsuarioController.Login), id = UrlParameter.Optional }
             );
         }
     }

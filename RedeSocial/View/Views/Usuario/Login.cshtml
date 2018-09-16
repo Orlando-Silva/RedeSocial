@@ -1,0 +1,31 @@
+﻿@model Core.ViewModels.LoginViewModel
+@using View.Controllers;
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPublica.cshtml";
+}
+
+@using (Html.BeginForm(
+    actionName: nameof(UsuarioController.Logar),
+    controllerName: nameof(UsuarioController).Replace("Controller", ""),
+    method: FormMethod.Post,
+    htmlAttributes: new
+    {
+        @id = "msform"
+    }))
+{
+
+<fieldset id="DadosConta">
+    <h3 class="fs-title">Seja Bem Vindo!</h3>
+    @Html.TextBoxFor(expression: _ => _.Login, htmlAttributes: new { placeholder = "Login", type = "text", required = "required" })
+    @Html.TextBoxFor(expression: _ => _.Senha, htmlAttributes: new { placeholder = "Senha", type = "password", required = "required" })
+
+    <br/>
+
+    @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger col-xs-12" })
+
+    <input type="submit" class="action-button submit" value="Login" />
+</fieldset>
+
+}

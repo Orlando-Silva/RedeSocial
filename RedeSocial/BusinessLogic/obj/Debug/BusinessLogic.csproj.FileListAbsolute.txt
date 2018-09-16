@@ -5,12 +5,14 @@ C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\Core.d
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\DAL.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\Helpers.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\Builders.pdb
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\Core.pdb
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\DAL.pdb
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\DAL.dll.config
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\Helpers.pdb
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\obj\Debug\BusinessLogic.csprojAssemblyReference.cache
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
