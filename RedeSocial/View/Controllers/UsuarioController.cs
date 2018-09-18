@@ -10,13 +10,32 @@ namespace View.Controllers
 {
     public class UsuarioController : Controller
     {
-        public ActionResult Home(Usuario usuario) => UsuarioLogic.EstaLogado(Session,usuario) ? View() : View(nameof(Login));       
+        public ActionResult Home(Usuario usuario)
+        {
+            if (UsuarioLogic.EstaLogado(Session, usuario))
+            {
+                var HomeViewModel = new HomeViewModel
+                {
+                    Usuario = usuario
+                };
+                return View(HomeViewModel);
+            }
+            else
+            {
+                return View(nameof(Login));
+            }
+        }
 
         public ActionResult Entrar() => View();
 
         public ActionResult Novo() => View();
 
-        public ActionResult Login(LoginViewModel _usuario) => View();    
+        public ActionResult Login(LoginViewModel _usuario) => View();
+
+        public ActionResult Logout(Usuario _usuario)
+        {
+            return View(nameof(Login));
+        }
 
         [HttpPost]
         public ActionResult Adicionar(NovoUsuarioViewModel _usuario)
@@ -30,13 +49,16 @@ namespace View.Controllers
         {
             try
             {
-                UsuarioLogic.Login(Session, _usuario);
-                return View(nameof(Home));
+                var HomeViewModel = new HomeViewModel
+                {
+                    Usuario = UsuarioLogic.Login(Session, _usuario)
+                };
+                return View(nameof(Home), HomeViewModel);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 ModelState.AddModelError(string.Empty, exception.Message);
-                return View(nameof(Login),_usuario);
+                return View(nameof(Login), _usuario);
             }
         }
 

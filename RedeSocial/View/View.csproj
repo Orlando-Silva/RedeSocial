@@ -126,13 +126,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css.css" />
+    <Content Include="Content\custom-bar.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\slick-theme.css" />
+    <Content Include="Content\slick.css" />
+    <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\default-profile-pic.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custombar.js" />
+    <Content Include="Scripts\disabled.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -142,6 +151,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\loginFormSteps.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\scrollbar.js" />
+    <Content Include="Scripts\slick.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Usuario\Novo.cshtml" />
     <Content Include="Scripts\README.md" />
@@ -164,6 +177,7 @@
     <Content Include="Views\Shared\_LayoutPublica.cshtml" />
     <Content Include="Views\Usuario\Home.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutPrivada.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
