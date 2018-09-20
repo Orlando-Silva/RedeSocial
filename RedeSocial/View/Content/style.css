@@ -903,8 +903,19 @@ main {
         font-weight: 600;
     }
 
-/* ============= Suggestions ============ */
+.headers-inline > h3,h4 {
+    display: inline;
+}
 
+.user-details-bottom {
+    margin-bottom: 15px !important; 
+}
+
+.nav-tabs.user-fw-status > li {
+    width: 33%;
+    border-bottom: 0;
+}
+/* ============= Suggestions ============ */
 .sd-title {
     float: left;
     width: 100%;

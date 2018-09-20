@@ -10,33 +10,16 @@ namespace View.Controllers
 {
     public class UsuarioController : Controller
     {
-        public ActionResult Home(Usuario usuario)
-        {
-            if (UsuarioLogic.EstaLogado(Session, usuario))
-            {
-                var HomeViewModel = new HomeViewModel
-                {
-                    Usuario = usuario
-                };
-                return View(HomeViewModel);
-            }
-            else
-            {
-                return View(nameof(Login));
-            }
-        }
 
+        #region --Redirect Actions--
         public ActionResult Entrar() => View();
 
         public ActionResult Novo() => View();
 
         public ActionResult Login(LoginViewModel _usuario) => View();
+        #endregion
 
-        public ActionResult Logout(Usuario _usuario)
-        {
-            return View(nameof(Login));
-        }
-
+        #region --Post Actions--
         [HttpPost]
         public ActionResult Adicionar(NovoUsuarioViewModel _usuario)
         {
@@ -48,12 +31,9 @@ namespace View.Controllers
         public ActionResult Logar(LoginViewModel _usuario)
         {
             try
-            {
-                var HomeViewModel = new HomeViewModel
-                {
-                    Usuario = UsuarioLogic.Login(Session, _usuario)
-                };
-                return View(nameof(Home), HomeViewModel);
+            { 
+                UsuarioLogic.Login(Session, _usuario);          
+                return Home();
             }
             catch (Exception exception)
             {
@@ -61,7 +41,47 @@ namespace View.Controllers
                 return View(nameof(Login), _usuario);
             }
         }
+        #endregion
 
+        public ActionResult Home()
+        {
+            if (UsuarioLogic.EstaLogado(Session))
+            {
+                var HomeViewModel = new HomeViewModel
+                {
+                    Usuario = UsuarioLogic.BuscarDaSession(Session)
+                };
+                return View(nameof(Home),HomeViewModel);
+            }
+            else
+            {
+                return View(nameof(Login));
+            }
+        }
+
+        public ActionResult Perfil(int? usuarioID)
+        {
+            if (UsuarioLogic.EstaLogado(Session) && usuarioID is int)
+            {
+                var usuarioPerfil = UsuarioLogic.BuscarPorId(usuarioID.Value);
+                var usuarioLogado = UsuarioLogic.BuscarDaSession(Session);
+                var PerfilViewModel = new PerfilViewModel
+                {
+                    Usuario = usuarioPerfil,
+                    PodeEditar = usuarioPerfil.ID == usuarioLogado.ID
+                };
+                return View(nameof(Perfil), PerfilViewModel);
+            }
+            else
+            {
+                return View(nameof(Login));
+            }
+        }
+
+        public ActionResult Logout(Usuario _usuario)
+        {
+            return View(nameof(Login)); //  TODO: Fazer logout.
+        }
 
     }
 }

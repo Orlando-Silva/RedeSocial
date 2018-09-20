@@ -178,6 +178,7 @@
     <Content Include="Views\Usuario\Home.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutPrivada.cshtml" />
+    <Content Include="Views\Usuario\Perfil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

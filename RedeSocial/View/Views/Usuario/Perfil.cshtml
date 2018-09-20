@@ -1,7 +1,7 @@
-﻿@model  Core.ViewModels.HomeViewModel
+﻿@model  Core.ViewModels.PerfilViewModel
 @using View.Controllers
 @{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "Perfil";
     Layout = "~/Views/Shared/_LayoutPrivada.cshtml";
 }
 
@@ -10,7 +10,7 @@
         <div class="container">
             <div class="main-section-data">
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 pd-left-none no-pd">
+                    <div class="col-lg-10 col-lg-offset-1 pd-left-none no-pd">
                         <div class="main-left-sidebar no-margin">
                             <div class="user-data full-width">
                                 <div class="user-profile">
@@ -28,25 +28,19 @@
                                     </div>
                                     <div class="user-specs">
                                         <h3>@Model.Usuario.Nome</h3>
+                                        <p>@Model.Usuario.Descricao</p>
                                     </div>
                                 </div>
-                                <ul class="user-fw-status">
-                                    <li>
-                                        @Html.ActionLink(linkText: "Ver Perfil", actionName: nameof(UsuarioController.Perfil), controllerName: nameof(UsuarioController).Replace("Controller",""), routeValues: new { usuarioID = Model.Usuario.ID },htmlAttributes: null)
-                                    </li>
+                                <ul class="nav-tabs user-fw-status">
+                                    <li><a data-toggle="tab" href="#posts">Posts</a></li>
+                                    <li><a data-toggle="tab" href="#informacoes">Informações</a></li>
+                                    <li><a href="#amigos">Amigos</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-8 no-pd">
-                        <div class="main-ws-sec">
-                            <textarea class="post-topbar">
-                            </textarea>
-                            <div class="post-st margin-bottom">
-                                <ul>
-                                    <li><a class="post-jb active" href="#" title="">Postar</a></li>
-                                </ul>
-                            </div>
+                    <div class="col-lg-10 col-lg-offset-1 pd-left-none no-pd tab-content">
+                        <div id="posts" class="main-ws-sec tab-pane fade in active">
                             <div class="posts-section">
                                 <div class="post-bar">
                                     <div class="post_topbar">
@@ -107,9 +101,52 @@
                                 </div><!--post-bar end-->
                             </div>
                         </div>
+                        <div id="informacoes" class="main-ws-sec tab-pane fade in">
+                            <div class="posts-section">
+                                <div class="post-bar">
+                                    <div class="job_descp">
+                                        <div class="col-lg-12 text-center">
+                                            <br />
+                                            <div class="row">
+                                                <h3>Sobre o Usuário</h3>
+                                            </div>
+                                            <div class="row headers-inline user-details-bottom">
+                                                <h3>Nome Completo: </h3><h4>@Model.Usuario.Nome</h4>
+                                            </div>
+                                            <div class="row headers-inline user-details-bottom">
+                                                <h3>Data de Nascimento: </h3><h4>@Model.Usuario.DataDeNascimento.ToShortDateString()</h4>
+                                            </div>
+                                            <div class="row headers-inline user-details-bottom">
+                                                <h3>Telefone: </h3><h4>@Model.Usuario.Telefone</h4>
+                                            </div>
+                                            <div class="row headers-inline user-details-bottom">
+                                                <h3>Pais: </h3><h4>@Model.Usuario.Pais</h4>
+                                            </div>
+                                            <div class="row headers-inline user-details-bottom">
+                                                <h3>Estado: </h3><h4>@Model.Usuario.Estado</h4>
+                                            </div>
+                                            <div class="row headers-inline user-details-bottom">
+                                                <h3>Cidade: </h3><h4>@Model.Usuario.Cidade</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="amigos" class="tab-pane fade in">
+                            Hello World
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<script>
+    $('.nav-tabs li a').click(function () {
+        $(this).tab('show');
+    });
+
+
+</script>

@@ -39,13 +39,17 @@ namespace BusinessLogic
 
         }
 
-        public static bool EstaLogado(HttpSessionStateBase currentSession,Usuario _usuario)
+        public static bool EstaLogado(HttpSessionStateBase currentSession)
         {
-            var usuario = SessionHelper.GetSessionObject(currentSession, _usuario, new UsuarioLogic());
+            var usuario = SessionHelper.GetSessionObject(currentSession, new UsuarioLogic());
             return usuario != null;
         }
 
-        public bool IsValid(Usuario entidade) => BuscarUnidadeDeTrabalho().Usuarios.Existe(entidade);          
+        public static Usuario BuscarDaSession(HttpSessionStateBase currentSession) => SessionHelper.GetSessionObject(currentSession, new UsuarioLogic());
+        
+        public bool IsValid(Usuario entidade) => BuscarUnidadeDeTrabalho().Usuarios.Existe(entidade);
+
+        public static Usuario BuscarPorId(int usuarioID) => BuscarUnidadeDeTrabalho().Usuarios.Buscar(usuarioID);
         #endregion
 
         #region --Métodos Privados--

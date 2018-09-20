@@ -22,11 +22,8 @@ namespace Helpers
             return currentSession;           
         }
 
-        public static T GetSessionObject<T>(HttpSessionStateBase currentSession, T entidade, IEntityValidator<T> Validator) where T : class
+        public static T GetSessionObject<T>(HttpSessionStateBase currentSession, IEntityValidator<T> Validator) where T : class
         {
-            if (entidade is default(T))
-                throw new ArgumentNullException(message: $"O parâmetro não pode ser nulo.", paramName: nameof(entidade));
-
             var encryptedEntity = currentSession[nameof(T)]?.ToString();
 
             if (encryptedEntity is null)
