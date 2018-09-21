@@ -3,7 +3,7 @@ using DAL;
 using DAL.Contexto;
 #endregion
 
-namespace Services.Estruturas
+namespace Services
 {
     public class Service
     {

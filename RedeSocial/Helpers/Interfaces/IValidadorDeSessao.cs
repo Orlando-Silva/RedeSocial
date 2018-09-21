@@ -1,4 +1,4 @@
-﻿namespace Helpers
+﻿namespace Helpers.Interfaces
 {
     public interface IValidadorDeSessao<T> where T : class
     {

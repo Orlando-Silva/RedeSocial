@@ -1,16 +1,19 @@
 ﻿#region --Using--
 using Core.Entidades;
 using Core.ViewModels;
-using Helpers;
+using Services.UsuarioServices.Módulos.Interfaces;
 using System.Web;
 #endregion
 
-namespace Services.UsuarioServices.Módulos.Interfaces
+namespace Services.Interfaces
 {
-    public interface IUsuarioLogin<T> : IValidadorDeSessao<T> where T : Usuario
+    public interface IUsuarioService<T> where T : Usuario
     {
         void IniciarSessao(HttpSessionStateBase sessao, T usuario);
         void FinalizarSessao(HttpSessionStateBase sessao);
         T BuscarNaSessao(HttpSessionStateBase sessao);
+        T Adicionar(Usuario _usuario);
+        T Inativar(int usuarioID);
+        T Atualizar(Usuario usuario);
     }
 }

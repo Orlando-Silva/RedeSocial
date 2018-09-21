@@ -1,4 +1,4 @@
-﻿namespace Services.Estruturas
+﻿namespace Services.Construtores.Core
 {
     public class Construtor<T> where T : class, new()
     {

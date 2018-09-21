@@ -1,40 +1,35 @@
 ﻿#region --Using--
 using Core.Entidades;
-using Core.Enums;
-using Core.ViewModels;
-using Helpers;
-using Services.Estruturas;
-using Services.UsuarioServices.Módulos.Interfaces;
+using Services.Construtores.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 #endregion
 
-namespace Services.UsuarioServices.Módulos
+namespace Services.Construtores
 {
-    public class UsuarioConstrutorService : Construtor<Usuario>, IUsuarioConstrutorService<Usuario>
+    public class ConstrutorUsuario : Construtor<Usuario>
     {
-        #region --IUsuarioConstrutor--
         #region --Construtores--
-        public UsuarioConstrutorService(Usuario _usuario) : base(_usuario)
+        public ConstrutorUsuario(Usuario _usuario) : base(_usuario)
         {
 
         }
 
-        public UsuarioConstrutorService() : base()
+        public ConstrutorUsuario() : base()
         {
 
         }
         #endregion
 
         #region --Construtores de Atributos--
-        public IUsuarioConstrutorService<Usuario> ComNome(string nome)
+        public ConstrutorUsuario ComNome(string nome)
         {
             Entidade.Nome = nome ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(nome) } não pode ser nulo.", paramName: nameof(nome));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> ComSenha(string senha)
+        public ConstrutorUsuario ComSenha(string senha)
         {
             if (senha is null)
                 throw new ArgumentNullException(message: $"O parâmetro { nameof(senha) } não pode ser nulo.", paramName: nameof(senha));
@@ -43,130 +38,126 @@ namespace Services.UsuarioServices.Módulos
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> ComEmail(string email)
+        public ConstrutorUsuario ComEmail(string email)
         {
             Entidade.Email = email ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(email) } não pode ser nulo.", paramName: nameof(email));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> ComLogin(string login)
+        public ConstrutorUsuario ComLogin(string login)
         {
             Entidade.Login = login ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(login) } não pode ser nulo.", paramName: nameof(login));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> ComTelefone(string telefone)
+        public ConstrutorUsuario ComTelefone(string telefone)
         {
             Entidade.Telefone = telefone ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(telefone) } não pode ser nulo.", paramName: nameof(telefone));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> CriadoEm(DateTime criado)
+        public ConstrutorUsuario CriadoEm(DateTime criado)
         {
             Entidade.Criado = criado;
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> NasceuEm(DateTime dataDeNascimento)
+        public ConstrutorUsuario NasceuEm(DateTime dataDeNascimento)
         {
             Entidade.DataDeNascimento = dataDeNascimento;
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> NoEndereco(string endereco)
+        public ConstrutorUsuario NoEndereco(string endereco)
         {
             Entidade.Endereco = endereco ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(endereco) } não pode ser nulo.", paramName: nameof(endereco));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> NaCidade(string cidade)
+        public ConstrutorUsuario NaCidade(string cidade)
         {
             Entidade.Cidade = cidade ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(cidade) } não pode ser nulo.", paramName: nameof(cidade));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> NoEstado(string estado)
+        public ConstrutorUsuario NoEstado(string estado)
         {
             Entidade.Estado = estado ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(estado) } não pode ser nulo.", paramName: nameof(estado));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> NoPais(string pais)
+        public ConstrutorUsuario NoPais(string pais)
         {
             Entidade.Pais = pais ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(pais) } não pode ser nulo.", paramName: nameof(pais));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> ComComplemento(string complemento)
+        public ConstrutorUsuario ComComplemento(string complemento)
         {
             Entidade.Complemento = complemento ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(complemento) } não pode ser nulo.", paramName: nameof(complemento));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> ComFotos(IList<FotoDePerfil> fotos)
+        public ConstrutorUsuario ComFotos(IList<FotoDePerfil> fotos)
         {
             Entidade.Fotos = fotos.Any() ? fotos : throw new ArgumentNullException(message: $"O parâmetro { nameof(fotos) } não pode ser nulo.", paramName: nameof(fotos));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> NovaFoto(FotoDePerfil foto)
+        public ConstrutorUsuario NovaFoto(FotoDePerfil foto)
         {
             Entidade.Fotos.Add(foto);
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> ComPostagens(IList<Postagem> postagems)
+        public ConstrutorUsuario ComPostagens(IList<Postagem> postagems)
         {
             Entidade.Postagens = postagems.Any() ? postagems : throw new ArgumentNullException(message: $"O parâmetro { nameof(postagems) } não pode ser nulo.", paramName: nameof(postagems));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> NovaPostagem(Postagem postagem)
+        public ConstrutorUsuario NovaPostagem(Postagem postagem)
         {
             Entidade.Postagens.Add(postagem);
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> ComComentarios(IList<Comentario> comentarios)
+        public ConstrutorUsuario ComComentarios(IList<Comentario> comentarios)
         {
             Entidade.Comentarios = comentarios.Any() ? comentarios : throw new ArgumentNullException(message: $"O parâmetro { nameof(comentarios) } não pode ser nulo.", paramName: nameof(comentarios));
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> NovoComentario(Comentario comentario)
+        public ConstrutorUsuario NovoComentario(Comentario comentario)
         {
             Entidade.Comentarios.Add(comentario);
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> ComStatus(Status status)
+        public ConstrutorUsuario ComStatus(Status status)
         {
             Entidade.Status = status;
             return this;
         }
 
-        public IUsuarioConstrutorService<Usuario> ComDescricao(string descricao)
+        public ConstrutorUsuario ComDescricao(string descricao)
         {
             Entidade.Descricao = descricao ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(descricao) } não pode ser nulo.", paramName: nameof(descricao));
             return this;
         }
         #endregion
 
-        public Usuario Montar(NovoUsuarioViewModel novoUsuarioViewModel)
-        {
-            return (Usuario) CriadoEm(DateTime.UtcNow)
-                            .ComLogin(novoUsuarioViewModel.Login)
-                            .ComEmail(novoUsuarioViewModel.Email)
-                            .ComSenha(novoUsuarioViewModel.Senha)
-                                .ComNome(novoUsuarioViewModel.Nome)
-                                .ComTelefone(novoUsuarioViewModel.Telefone)
-                                .NasceuEm(novoUsuarioViewModel.DataDeNascimento)
-                                    .NoPais(novoUsuarioViewModel.Pais)
-                                    .NoEstado(novoUsuarioViewModel.Estado)
-                                    .NaCidade(novoUsuarioViewModel.Cidade)
-                                    .NoEndereco(novoUsuarioViewModel.Endereco)
-                                    .ComComplemento(novoUsuarioViewModel.Complemento);
-        }
-        #endregion
+        public Usuario Montar(Usuario usuario) => CriadoEm(DateTime.UtcNow)
+                                                    .ComLogin(usuario.Login)
+                                                    .ComEmail(usuario.Email)
+                                                    .ComSenha(usuario.Senha)
+                                                        .ComNome(usuario.Nome)
+                                                        .ComTelefone(usuario.Telefone)
+                                                        .NasceuEm(usuario.DataDeNascimento)
+                                                            .NoPais(usuario.Pais)
+                                                            .NoEstado(usuario.Estado)
+                                                            .NaCidade(usuario.Cidade)
+                                                            .NoEndereco(usuario.Endereco)
+                                                            .ComComplemento(usuario.Complemento);
     }
 }

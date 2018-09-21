@@ -48,10 +48,6 @@
     <Compile Include="UsuárioFactory\UsuarioLogic.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Builders\Builders.csproj">
-      <Project>{FAF842A4-C275-4061-88E0-9C10CC93F1D6}</Project>
-      <Name>Builders</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{6947141C-24A7-4512-9AB9-2EB3EF197898}</Project>
       <Name>Core</Name>
