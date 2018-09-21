@@ -9,11 +9,11 @@ namespace Helpers
 {
     public class Seguranca
     {
-        private static readonly string PasswordHash = "P@@Sw0rd";
-        private static readonly string SaltKey = "S@LT&KEY";
-        private static readonly string VIKey = "@1B2c3D4e5F6g7H8";
+        private const string PasswordHash = "P@@Sw0rd";
+        private const string SaltKey = "S@LT&KEY";
+        private const string VIKey = "@1B2c3D4e5F6g7H8";
 
-        public static string Encrypt(string plainText)
+        public static string Encriptar(string plainText)
         {
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
 
@@ -37,7 +37,7 @@ namespace Helpers
             return Convert.ToBase64String(cipherTextBytes);
         }
 
-        public static string Decrypt(string encryptedText)
+        public static string Decriptar(string encryptedText)
         {
             byte[] cipherTextBytes = Convert.FromBase64String(encryptedText);
             byte[] keyBytes = new Rfc2898DeriveBytes(PasswordHash, Encoding.ASCII.GetBytes(SaltKey)).GetBytes(256 / 8);

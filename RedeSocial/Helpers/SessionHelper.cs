@@ -8,32 +8,30 @@ namespace Helpers
 {
     public class SessionHelper
     {
-        public static HttpSessionStateBase StoreInSession<T>(HttpSessionStateBase currentSession, T entidade) where T : class
+        public static void AdicionarNaSessao<T>(HttpSessionStateBase sessao, T entidade) where T : class
         {
             if (entidade is default(T))
                 throw new ArgumentNullException(message: $"O parâmetro não pode ser nulo.", paramName: nameof(entidade));
 
-            var sessionObject = JsonConvert.SerializeObject(entidade);
+            var objeto = JsonConvert.SerializeObject(entidade);
 
-            var encryptedObject = Seguranca.Encrypt(sessionObject);
+            var objetoEncriptado = Seguranca.Encriptar(objeto);
 
-            currentSession[nameof(T)] = encryptedObject;
-
-            return currentSession;           
+            sessao[nameof(T)] = objetoEncriptado;
         }
 
-        public static T GetSessionObject<T>(HttpSessionStateBase currentSession, IEntityValidator<T> Validator) where T : class
+        public static T BuscarNaSessao<T>(HttpSessionStateBase sessao, IValidadorDeSessao<T> Validador) where T : class
         {
-            var encryptedEntity = currentSession[nameof(T)]?.ToString();
+            var objeto = sessao[nameof(T)]?.ToString();
 
-            if (encryptedEntity is null)
+            if (objeto is null)
                 return null;
 
-            var decryptedEntity = Seguranca.Decrypt(encryptedEntity);
+            var objecto = Seguranca.Decriptar(objeto);
 
-            var entityObject = JsonConvert.DeserializeObject<T>(decryptedEntity);
+            var entidade = JsonConvert.DeserializeObject<T>(objecto);
 
-            return Validator.IsValid(entityObject) ? entityObject : null;         
+            return Validador.ValidarSessao(entidade) ? entidade : null;         
         }
     }
 }

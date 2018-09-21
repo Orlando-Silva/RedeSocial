@@ -5,13 +5,10 @@ using DAL.Contexto;
 
 namespace BusinessLogic
 {
-    public class Base
+    public class Alicerce
     {
         private readonly static UnidadeDeTrabalho UnidadeDeTrabalho = new UnidadeDeTrabalho(new RedeSocialContexto());
 
         protected static UnidadeDeTrabalho BuscarUnidadeDeTrabalho() => UnidadeDeTrabalho ?? new UnidadeDeTrabalho(new RedeSocialContexto());
-
-
-
     }
 }
