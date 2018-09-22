@@ -8,6 +8,10 @@ namespace Core.ViewModels
     {
         public Usuario Usuario { get; set; }
 
+        public Usuario UsuarioEdicao { get; set; }
+
         public bool PodeEditar { get; set; }
+
+        public string FU_pass { get; set; }
     }
 }

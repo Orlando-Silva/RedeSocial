@@ -1,4 +1,4 @@
-﻿
+﻿@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 
 
@@ -273,7 +273,6 @@ nav ul li:hover > ul,
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.75);
     z-index: 99;
 }
 
@@ -903,12 +902,20 @@ main {
         font-weight: 600;
     }
 
-.headers-inline > h3,h4 {
+.user-information-margin {
+    margin-top: 25px;
+}
+
+.user-edit-form > input, .user-edit-form > textarea {
+    margin-top: 10px;
+}
+
+.headers-inline > h3, h4 {
     display: inline;
 }
 
 .user-details-bottom {
-    margin-bottom: 15px !important; 
+    margin-bottom: 15px !important;
 }
 
 .nav-tabs.user-fw-status > li {
@@ -1789,6 +1796,50 @@ main {
 .comment-list {
     display: table;
     padding-bottom: 30px;
+}
+
+
+.container-image {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .3s ease;
+}
+
+.container-image:hover .overlay-image {
+    opacity: 1;
+}
+
+.icon {
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.fa-plus:hover {
+    color: #e44d3a;
 }
 
 .bg-img {

@@ -30,7 +30,7 @@
         @Html.TextBoxFor(expression: _ => _.Login, htmlAttributes: new { placeholder = "Login", type = "text", required = "required" })
         @Html.TextBoxFor(expression: _ => _.Email, htmlAttributes: new { placeholder = "Email", type = "email", required = "required" })
         @Html.TextBoxFor(expression: _ => _.Senha, htmlAttributes: new { placeholder = "Senha", type = "password", required = "required" })
-        @Html.TextBoxFor(expression: _ => _.ConfirmacaoSenha, htmlAttributes: new { placeholder = "Confirme sua senha", type = "password", required = "required" })
+        @Html.TextBox(name: "ConfirmacaoSenha", value: string.Empty, htmlAttributes: new { @id = "ConfirmacaoSenha", placeholder = "Confirme sua senha", type = "password", required = "required" })
         <i class="next action-button-icon far fa-arrow-alt-circle-right"></i>
     </fieldset>
     <fieldset id="DadosPessoais">

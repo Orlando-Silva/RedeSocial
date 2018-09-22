@@ -1,4 +1,4 @@
-﻿@model Core.ViewModels.LoginViewModel
+﻿@model Core.Entidades.Usuario
 @using View.Controllers;
 
 @{
@@ -16,16 +16,16 @@
     }))
 {
 
-<fieldset id="DadosConta">
-    <h3 class="fs-title">Seja Bem Vindo!</h3>
-    @Html.TextBoxFor(expression: _ => _.Login, htmlAttributes: new { placeholder = "Login", type = "text", required = "required" })
-    @Html.TextBoxFor(expression: _ => _.Senha, htmlAttributes: new { placeholder = "Senha", type = "password", required = "required" })
+    <fieldset id="DadosConta">
+        <h3 class="fs-title">Seja Bem Vindo!</h3>
+        @Html.TextBoxFor(expression: _ => _.Login, htmlAttributes: new { placeholder = "Login", type = "text", required = "required" })
+        @Html.TextBoxFor(expression: _ => _.Senha, htmlAttributes: new { placeholder = "Senha", type = "password", required = "required" })
 
-    <br/>
+        <br />
 
-    @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger col-xs-12" })
+        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger col-xs-12" })
 
-    <input type="submit" class="action-button submit" value="Login" />
-</fieldset>
+        <input type="submit" class="action-button submit" value="Login" />
+    </fieldset>
 
 }

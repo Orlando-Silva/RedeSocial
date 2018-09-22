@@ -29,14 +29,20 @@ namespace Services
         #region --Login--
         public Usuario BuscarNaSessao(HttpSessionStateBase sessao) => SessionHelper.BuscarNaSessao(sessao, this);
 
-        public void IniciarSessao(HttpSessionStateBase sessao, Usuario usuario) => SessionHelper.AdicionarNaSessao(sessao, usuario);
-
         public bool ValidarSessao(Usuario entidade) => BuscarUnidadeDeTrabalho().Usuarios.Existe(entidade);
 
         public void FinalizarSessao(HttpSessionStateBase sessao) => throw new NotImplementedException();
+
+        public void IniciarSessao(HttpSessionStateBase sessao, Usuario usuario)
+        {
+            usuario = UnidadeDeTrabalho.Usuarios.BuscarPorLoginSenha(usuario.Login, Seguranca.Encriptar(usuario.Senha)) ?? throw new Exception($"Login ou senha incorretos.");
+            SessionHelper.AdicionarNaSessao(sessao, usuario);
+        }
         #endregion
 
         #region --Operações Básicas--
+        public Usuario BuscarPorID(int ID) => UnidadeDeTrabalho.Usuarios.Buscar(ID);
+
         public Usuario Adicionar(Usuario _usuario)
         {
             var usuario = Construtor.Montar(_usuario);
@@ -45,9 +51,13 @@ namespace Services
             return usuario;
         }
 
-        public Usuario Atualizar(Usuario usuario)
+        public Usuario Atualizar(Usuario _usuario)
         {
-            throw new NotImplementedException();
+            var usuarioAtualizado = Construtor.Montar(_usuario);
+            var usuarioAntigo = UnidadeDeTrabalho.Usuarios.Buscar(_usuario.ID);
+            usuarioAntigo = usuarioAtualizado;
+            UnidadeDeTrabalho.Encerrar();
+            return usuarioAtualizado;
         }
 
         public Usuario Inativar(int usuarioID)

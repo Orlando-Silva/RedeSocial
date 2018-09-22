@@ -1,5 +1,7 @@
 ﻿#region --Using--
 using Core.Entidades;
+using Core.Enums;
+using Helpers;
 using Services.Construtores.Core;
 using System;
 using System.Collections.Generic;
@@ -154,6 +156,7 @@ namespace Services.Construtores
                                                         .ComNome(usuario.Nome)
                                                         .ComTelefone(usuario.Telefone)
                                                         .NasceuEm(usuario.DataDeNascimento)
+                                                        .ComDescricao(usuario.Descricao)
                                                             .NoPais(usuario.Pais)
                                                             .NoEstado(usuario.Estado)
                                                             .NaCidade(usuario.Cidade)

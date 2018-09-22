@@ -137,6 +137,7 @@
     <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\camera-icon.jpg" />
     <Content Include="Images\default-profile-pic.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -197,13 +198,13 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
-      <Project>{9f044a2f-a14d-4e23-ad1d-4db8a19a15a9}</Project>
-      <Name>BusinessLogic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{6947141C-24A7-4512-9AB9-2EB3EF197898}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helpers\Helpers.csproj">
+      <Project>{E348297C-1259-4E7D-9961-A9D1F891BB62}</Project>
+      <Name>Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{840A871F-849B-4A86-A42D-9D73CCCF266D}</Project>

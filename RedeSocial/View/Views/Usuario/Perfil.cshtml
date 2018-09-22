@@ -16,13 +16,44 @@
                                 <div class="user-profile">
                                     <div class="username-dt">
                                         <div class="usr-pic">
-                                            @if (Model.Usuario.Fotos != null)
+                                            @if (Model.PodeEditar)
                                             {
-                                                <img src="@Model.Usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Caminho" alt="">
+                                                using (Html.BeginForm(
+                                                actionName: nameof(UsuarioController.AtualizarAvatar),
+                                                controllerName: nameof(UsuarioController).Replace("Controller", ""),
+                                                method: FormMethod.Post,
+                                                htmlAttributes: new { enctype = "multipart/form-data" }))
+                                                {
+                                                    <div class="container-image usr-pic">
+                                                        @if (Model.Usuario.Fotos != null)
+                                                        {
+                                                            <img class="image" src="@Model.Usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Caminho" alt="Avatar">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/Images/default-profile-pic.jpg" class="image" alt="Avatar">
+                                                        }
+                                                        <div class="overlay-image">
+                                                            <a class="icon">
+                                                                <i class='fa fa-plus'></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <input type="file" class="hidden" name="FotoDePerfil" id="FotoDePerfil" />
+                                                    <input type="submit" class="hidden" id="sender" />
+
+                                                }
                                             }
                                             else
                                             {
-                                                <img src="~/Images/default-profile-pic.jpg" alt="">
+                                                if (Model.Usuario.Fotos != null)
+                                                {
+                                                    <img src="@Model.Usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Caminho" alt="Avatar">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/Images/default-profile-pic.jpg" alt="Avatar">
+                                                }
                                             }
                                         </div>
                                     </div>
@@ -105,28 +136,37 @@
                             <div class="posts-section">
                                 <div class="post-bar">
                                     <div class="job_descp">
-                                        <div class="col-lg-12 text-center">
-                                            <br />
-                                            <div class="row">
-                                                <h3>Sobre o Usuário</h3>
-                                            </div>
-                                            <div class="row headers-inline user-details-bottom">
-                                                <h3>Nome Completo: </h3><h4>@Model.Usuario.Nome</h4>
-                                            </div>
-                                            <div class="row headers-inline user-details-bottom">
-                                                <h3>Data de Nascimento: </h3><h4>@Model.Usuario.DataDeNascimento.ToShortDateString()</h4>
-                                            </div>
-                                            <div class="row headers-inline user-details-bottom">
-                                                <h3>Telefone: </h3><h4>@Model.Usuario.Telefone</h4>
-                                            </div>
-                                            <div class="row headers-inline user-details-bottom">
-                                                <h3>Pais: </h3><h4>@Model.Usuario.Pais</h4>
-                                            </div>
-                                            <div class="row headers-inline user-details-bottom">
-                                                <h3>Estado: </h3><h4>@Model.Usuario.Estado</h4>
-                                            </div>
-                                            <div class="row headers-inline user-details-bottom">
-                                                <h3>Cidade: </h3><h4>@Model.Usuario.Cidade</h4>
+                                        <div class="col-lg-12 text-center user-information-margin">
+                                            @if (Model.PodeEditar)
+                                            {
+                                                <div class="col-lg-offset-11">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar">
+                                                        Editar
+                                                    </button>
+                                                </div>
+                                            }
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <h3>Sobre o Usuário</h3>
+                                                </div>
+                                                <div class="row headers-inline user-details-bottom">
+                                                    <h3>Nome Completo: </h3><h4>@Model.Usuario.Nome</h4>
+                                                </div>
+                                                <div class="row headers-inline user-details-bottom">
+                                                    <h3>Data de Nascimento: </h3><h4>@Model.Usuario.DataDeNascimento.ToShortDateString()</h4>
+                                                </div>
+                                                <div class="row headers-inline user-details-bottom">
+                                                    <h3>Telefone: </h3><h4>@Model.Usuario.Telefone</h4>
+                                                </div>
+                                                <div class="row headers-inline user-details-bottom">
+                                                    <h3>Pais: </h3><h4>@Model.Usuario.Pais</h4>
+                                                </div>
+                                                <div class="row headers-inline user-details-bottom">
+                                                    <h3>Estado: </h3><h4>@Model.Usuario.Estado</h4>
+                                                </div>
+                                                <div class="row headers-inline user-details-bottom">
+                                                    <h3>Cidade: </h3><h4>@Model.Usuario.Cidade</h4>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -143,10 +183,62 @@
     </div>
 </main>
 
+@if (Model.PodeEditar)
+{
+    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="labelModalEditar" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditar">Editar Perfil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @using (Html.BeginForm(
+                        actionName: nameof(UsuarioController.AtualizarDados),
+                        controllerName: nameof(UsuarioController).Replace("Controller", ""),
+                        method: FormMethod.Post,
+                        htmlAttributes: null))
+                {
+                    <div class="modal-body">
+
+                        <div class="row col-lg-12">
+                            <div class="col-lg-6 user-edit-form">
+                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Nome, htmlAttributes: new { placeholder = "Nome Completo", name = "nome", type = "text", required = "required", @class = "form-control" })
+                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Telefone, htmlAttributes: new { placeholder = "Telefone", name = "telefone", type = "tel", required = "required", @class = "form-control" })
+                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.DataDeNascimento, htmlAttributes: new { placeholder = "Data de Nascimento", name = "dataDeNascimento", type = "date", required = "required", @class = "form-control" })
+                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Pais, htmlAttributes: new { placeholder = "País", type = "text", @class = "form-control" })
+                            </div>
+                            <div class="col-lg-6 user-edit-form">
+                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Estado, htmlAttributes: new { placeholder = "Estado", type = "text", required = "required", @class = "form-control" })
+                                @Html.TextAreaFor(expression: _ => _.UsuarioEdicao.Descricao, htmlAttributes: new { placeholder = "Descreva-se", type = "text", @class = "form-control" })
+                                @Html.HiddenFor(expression: _ => _.FU_pass, htmlAttributes: new { name = "p-target-w-f-u" });
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Mudanças</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
 <script>
     $('.nav-tabs li a').click(function () {
         $(this).tab('show');
     });
 
+
+    $('.container-image').click(function () {
+        $('#FotoDePerfil').click();
+    });
+
+    $("#FotoDePerfil").change(function (e) {
+        $('#sender').click();
+    });
 
 </script>

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IValidadorDeSessao.cs" />
+    <Compile Include="ObjectHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguranca.cs" />
     <Compile Include="SessionHelper.cs" />

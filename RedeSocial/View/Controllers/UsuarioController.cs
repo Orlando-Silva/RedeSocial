@@ -1,9 +1,10 @@
 ﻿#region --Using--
-using BusinessLogic;
 using Core.Entidades;
 using Core.ViewModels;
+using Helpers;
 using Services;
 using System;
+using System.Web;
 using System.Web.Mvc;
 #endregion
 
@@ -49,16 +50,21 @@ namespace View.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult Perfil(int? usuarioID)
         {
             var usuario = UsuarioService.BuscarNaSessao(Session);
+
             if (usuario is Usuario && usuarioID is int)
             {
-                var usuarioPerfil = UsuarioLogic.BuscarPorId(usuarioID.Value);
+                var encryptedID = Seguranca.Encriptar(usuario.ID.ToString());
+                var usuarioPerfil = UsuarioService.BuscarPorID(usuarioID.Value);
                 return View(nameof(Perfil), new PerfilViewModel
                 {
-                    Usuario = usuarioPerfil,
-                    PodeEditar = usuarioPerfil.ID == usuario.ID
+                    Usuario =  usuarioPerfil,
+                    UsuarioEdicao = usuario,
+                    PodeEditar = usuarioPerfil.ID == usuario.ID,
+                    FU_pass = encryptedID
                 });
             }
             else
@@ -69,7 +75,7 @@ namespace View.Controllers
 
         public ActionResult Logout(Usuario _usuario)
         {
-            return View(nameof(Login)); //  TODO: Fazer logout.
+            return View(nameof(Login));
         }
         #endregion
 
@@ -88,6 +94,42 @@ namespace View.Controllers
                 return HttpNotFound(exception.Message);
             }
         }
+
+        [HttpPost]
+        public ActionResult AtualizarDados(PerfilViewModel perfilViewModel)
+        {
+            try
+            {
+                var usuarioID = int.Parse(Seguranca.Decriptar(perfilViewModel.FU_pass));
+                var usuario = UsuarioService.BuscarPorID(usuarioID);
+
+                usuario = ObjectHelper.MergeObjects(usuario, perfilViewModel.UsuarioEdicao);
+
+
+                usuario = UsuarioService.Atualizar(usuario);
+                UsuarioService.IniciarSessao(Session, usuario);
+                return View(viewName: nameof(Perfil), model: usuario.ID);
+            }
+            catch (Exception exception)
+            {
+                return HttpNotFound(exception.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AtualizarAvatar(HttpPostedFileBase FotoDePerfil)
+        {
+            try
+            {
+                var yeet = "If we got here, we should drink boys";
+                return View();
+            }
+            catch (Exception exception)
+            {
+                return HttpNotFound(exception.Message);
+            }
+        }
+
 
         [HttpPost]
         public ActionResult Logar(Usuario usuario)
