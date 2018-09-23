@@ -1,6 +1,8 @@
 ﻿#region --Using--
 using System;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 #endregion
 
 namespace Helpers
@@ -13,15 +15,17 @@ namespace Helpers
             var oldObjectMembers = oldObject.GetType().GetMembers().Where(_ => _.MemberType == System.Reflection.MemberTypes.Property);
             var newObjectMembers = newObject.GetType().GetMembers().Where(_ => _.MemberType == System.Reflection.MemberTypes.Property);
 
+            T mergedObject = new T();
+            Type type = mergedObject.GetType();
+
             for (int i = 0; i < oldObjectMembers.Count(); i++)
             {
                 var oldValue = oldObject.GetType().GetProperty(oldObjectMembers.ElementAtOrDefault(i).Name).GetValue(oldObject);
                 var newValue = newObject.GetType().GetProperty(newObjectMembers.ElementAtOrDefault(i).Name).GetValue(newObject);
-                var type = newObject.GetType();
 
                 object finalValue = null;
 
-                if (oldValue is int)
+                if (oldValue is default(int) || newValue is default(int))
                 {
                     if ((oldValue is default(int)) && !(newValue is default(int)))
                     {
@@ -38,7 +42,7 @@ namespace Helpers
                 }
                 else
                 {
-                    if (finalValue != null)
+                    if (newValue != null || oldValue != null)
                     {
                         finalValue = oldValue != newValue ? newValue : oldValue;
                     }
@@ -49,12 +53,24 @@ namespace Helpers
                     finalValue = oldValue ?? newValue;
                 }
 
-                newObject.GetType().GetProperty(newObjectMembers.ElementAtOrDefault(i).Name).SetValue(type, finalValue);
+
+                PropertyInfo propertyInfo = type.GetProperty(newObjectMembers.ElementAtOrDefault(i).Name);
+
+                propertyInfo.SetValue(mergedObject, finalValue);
+
             }
 
-            return newObject;
+            return mergedObject;
+        }
 
-            throw new NotImplementedException();
+        private static void SetPropertyValue<T>(Expression<Func<T>> lambda, object value)
+        {
+            var memberExpression = (MemberExpression)lambda.Body;
+            var propertyInfo = (PropertyInfo)memberExpression.Member;
+            var propertyOwnerExpression = (MemberExpression)memberExpression.Expression;
+            var propertyOwner = Expression.Lambda(propertyOwnerExpression).Compile().DynamicInvoke();
+
+            propertyInfo.SetValue(propertyOwner, value, null);
         }
     }
 }

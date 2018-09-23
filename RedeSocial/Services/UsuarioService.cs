@@ -15,14 +15,13 @@ namespace Services
     {
 
         #region --Atributos--
-        private static ConstrutorUsuario Construtor { get; set; }
         private static UnidadeDeTrabalho UnidadeDeTrabalho { get { return BuscarUnidadeDeTrabalho(); } }
         #endregion
 
         #region --Construtor--
         public UsuarioService()
         {
-            Construtor = new ConstrutorUsuario();
+
         }
         #endregion
 
@@ -35,7 +34,7 @@ namespace Services
 
         public void IniciarSessao(HttpSessionStateBase sessao, Usuario usuario)
         {
-            usuario = UnidadeDeTrabalho.Usuarios.BuscarPorLoginSenha(usuario.Login, Seguranca.Encriptar(usuario.Senha)) ?? throw new Exception($"Login ou senha incorretos.");
+            usuario = UnidadeDeTrabalho.Usuarios.BuscarPorLoginSenha(usuario.Login, usuario.Senha) ?? throw new Exception($"Login ou senha incorretos.");
             SessionHelper.AdicionarNaSessao(sessao, usuario);
         }
         #endregion
@@ -45,17 +44,16 @@ namespace Services
 
         public Usuario Adicionar(Usuario _usuario)
         {
-            var usuario = Construtor.Montar(_usuario);
+            var usuario = new ConstrutorUsuario().Montar(_usuario);
             UnidadeDeTrabalho.Usuarios.Adicionar(usuario);
             UnidadeDeTrabalho.Encerrar();
             return usuario;
         }
 
-        public Usuario Atualizar(Usuario _usuario)
+        public Usuario Atualizar(Usuario usuarioAtualizado)
         {
-            var usuarioAtualizado = Construtor.Montar(_usuario);
-            var usuarioAntigo = UnidadeDeTrabalho.Usuarios.Buscar(_usuario.ID);
-            usuarioAntigo = usuarioAtualizado;
+            var usuarioAntigo = UnidadeDeTrabalho.Usuarios.Buscar(usuarioAtualizado.ID);
+            usuarioAntigo = new ConstrutorUsuario(usuarioAntigo).Montar(usuarioAtualizado);
             UnidadeDeTrabalho.Encerrar();
             return usuarioAtualizado;
         }

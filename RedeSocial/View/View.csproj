@@ -184,6 +184,7 @@
     <Content Include="Views\Usuario\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutPrivada.cshtml" />
     <Content Include="Views\Usuario\Perfil.cshtml" />
+    <Content Include="Views\Usuario\Editar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

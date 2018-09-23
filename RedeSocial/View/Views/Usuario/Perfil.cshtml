@@ -183,49 +183,7 @@
     </div>
 </main>
 
-@if (Model.PodeEditar)
-{
-    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="labelModalEditar" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalEditar">Editar Perfil</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                @using (Html.BeginForm(
-                        actionName: nameof(UsuarioController.AtualizarDados),
-                        controllerName: nameof(UsuarioController).Replace("Controller", ""),
-                        method: FormMethod.Post,
-                        htmlAttributes: null))
-                {
-                    <div class="modal-body">
-
-                        <div class="row col-lg-12">
-                            <div class="col-lg-6 user-edit-form">
-                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Nome, htmlAttributes: new { placeholder = "Nome Completo", name = "nome", type = "text", required = "required", @class = "form-control" })
-                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Telefone, htmlAttributes: new { placeholder = "Telefone", name = "telefone", type = "tel", required = "required", @class = "form-control" })
-                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.DataDeNascimento, htmlAttributes: new { placeholder = "Data de Nascimento", name = "dataDeNascimento", type = "date", required = "required", @class = "form-control" })
-                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Pais, htmlAttributes: new { placeholder = "País", type = "text", @class = "form-control" })
-                            </div>
-                            <div class="col-lg-6 user-edit-form">
-                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Estado, htmlAttributes: new { placeholder = "Estado", type = "text", required = "required", @class = "form-control" })
-                                @Html.TextAreaFor(expression: _ => _.UsuarioEdicao.Descricao, htmlAttributes: new { placeholder = "Descreva-se", type = "text", @class = "form-control" })
-                                @Html.HiddenFor(expression: _ => _.FU_pass, htmlAttributes: new { name = "p-target-w-f-u" });
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        <button type="submit" class="btn btn-primary">Salvar Mudanças</button>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-}
+@Html.Partial("Editar");
 
 <script>
     $('.nav-tabs li a').click(function () {

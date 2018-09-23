@@ -27,34 +27,31 @@ namespace Services.Construtores
         #region --Construtores de Atributos--
         public ConstrutorUsuario ComNome(string nome)
         {
-            Entidade.Nome = nome ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(nome) } não pode ser nulo.", paramName: nameof(nome));
+            Entidade.Nome = nome;
             return this;
         }
 
-        public ConstrutorUsuario ComSenha(string senha)
+        public ConstrutorUsuario ComSenha(string senha, bool encriptar)
         {
-            if (senha is null)
-                throw new ArgumentNullException(message: $"O parâmetro { nameof(senha) } não pode ser nulo.", paramName: nameof(senha));
-
-            Entidade.Senha = Seguranca.Encriptar(senha).ToString();
+            Entidade.Senha = encriptar ? Seguranca.Encriptar(senha) : senha;
             return this;
         }
 
         public ConstrutorUsuario ComEmail(string email)
         {
-            Entidade.Email = email ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(email) } não pode ser nulo.", paramName: nameof(email));
+            Entidade.Email = email;
             return this;
         }
 
         public ConstrutorUsuario ComLogin(string login)
         {
-            Entidade.Login = login ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(login) } não pode ser nulo.", paramName: nameof(login));
+            Entidade.Login = login;
             return this;
         }
 
         public ConstrutorUsuario ComTelefone(string telefone)
         {
-            Entidade.Telefone = telefone ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(telefone) } não pode ser nulo.", paramName: nameof(telefone));
+            Entidade.Telefone = telefone;
             return this;
         }
 
@@ -72,37 +69,37 @@ namespace Services.Construtores
 
         public ConstrutorUsuario NoEndereco(string endereco)
         {
-            Entidade.Endereco = endereco ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(endereco) } não pode ser nulo.", paramName: nameof(endereco));
+            Entidade.Endereco = endereco;
             return this;
         }
 
         public ConstrutorUsuario NaCidade(string cidade)
         {
-            Entidade.Cidade = cidade ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(cidade) } não pode ser nulo.", paramName: nameof(cidade));
+            Entidade.Cidade = cidade;
             return this;
         }
 
         public ConstrutorUsuario NoEstado(string estado)
         {
-            Entidade.Estado = estado ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(estado) } não pode ser nulo.", paramName: nameof(estado));
+            Entidade.Estado = estado;
             return this;
         }
 
         public ConstrutorUsuario NoPais(string pais)
         {
-            Entidade.Pais = pais ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(pais) } não pode ser nulo.", paramName: nameof(pais));
+            Entidade.Pais = pais;
             return this;
         }
 
         public ConstrutorUsuario ComComplemento(string complemento)
         {
-            Entidade.Complemento = complemento ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(complemento) } não pode ser nulo.", paramName: nameof(complemento));
+            Entidade.Complemento = complemento;
             return this;
         }
 
         public ConstrutorUsuario ComFotos(IList<FotoDePerfil> fotos)
         {
-            Entidade.Fotos = fotos.Any() ? fotos : throw new ArgumentNullException(message: $"O parâmetro { nameof(fotos) } não pode ser nulo.", paramName: nameof(fotos));
+            Entidade.Fotos = fotos;
             return this;
         }
 
@@ -114,7 +111,7 @@ namespace Services.Construtores
 
         public ConstrutorUsuario ComPostagens(IList<Postagem> postagems)
         {
-            Entidade.Postagens = postagems.Any() ? postagems : throw new ArgumentNullException(message: $"O parâmetro { nameof(postagems) } não pode ser nulo.", paramName: nameof(postagems));
+            Entidade.Postagens = postagems;
             return this;
         }
 
@@ -126,7 +123,7 @@ namespace Services.Construtores
 
         public ConstrutorUsuario ComComentarios(IList<Comentario> comentarios)
         {
-            Entidade.Comentarios = comentarios.Any() ? comentarios : throw new ArgumentNullException(message: $"O parâmetro { nameof(comentarios) } não pode ser nulo.", paramName: nameof(comentarios));
+            Entidade.Comentarios = comentarios;
             return this;
         }
 
@@ -144,7 +141,7 @@ namespace Services.Construtores
 
         public ConstrutorUsuario ComDescricao(string descricao)
         {
-            Entidade.Descricao = descricao ?? throw new ArgumentNullException(message: $"O parâmetro { nameof(descricao) } não pode ser nulo.", paramName: nameof(descricao));
+            Entidade.Descricao = descricao;
             return this;
         }
         #endregion
@@ -152,7 +149,7 @@ namespace Services.Construtores
         public Usuario Montar(Usuario usuario) => CriadoEm(DateTime.UtcNow)
                                                     .ComLogin(usuario.Login)
                                                     .ComEmail(usuario.Email)
-                                                    .ComSenha(usuario.Senha)
+                                                    .ComSenha(usuario.Senha, usuario is default(Usuario))
                                                         .ComNome(usuario.Nome)
                                                         .ComTelefone(usuario.Telefone)
                                                         .NasceuEm(usuario.DataDeNascimento)

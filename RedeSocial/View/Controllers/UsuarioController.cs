@@ -108,7 +108,7 @@ namespace View.Controllers
 
                 usuario = UsuarioService.Atualizar(usuario);
                 UsuarioService.IniciarSessao(Session, usuario);
-                return View(viewName: nameof(Perfil), model: usuario.ID);
+                return Perfil(usuario.ID);
             }
             catch (Exception exception)
             {
@@ -136,6 +136,7 @@ namespace View.Controllers
         {
             try
             {
+                usuario.Senha = Seguranca.Encriptar(usuario.Senha);
                 UsuarioService.IniciarSessao(Session, usuario);          
                 return Home();
             }
