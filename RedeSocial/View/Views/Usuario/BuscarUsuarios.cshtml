@@ -1,0 +1,54 @@
+﻿@model  View.ViewModels.BuscarUsuariosViewModel
+@using View.Controllers;
+@{
+    ViewBag.Title = "BuscarUsuarios";
+    Layout = "~/Views/Shared/_LayoutPrivada.cshtml";
+}
+<main>
+    <div class="main-section">
+        <div class="container">
+            <div class="main-section-data">
+                <div class="row">
+                    <div class="col-lg-12 col-md-4 pd-left-none no-pd">
+                        <div class="posts-section">
+                            <ul class="post-bar">
+                                @foreach (var usuario in Model.Usuarios)
+                                {
+                                    <li class="usy-dt alert alert-info margin-sides">
+                                        @if (usuario.Fotos != null && usuario.Fotos.Any(_ => _.Status == Core.Enums.Status.Ativo))
+                                        {
+                                            <img width="50" height="50" src="~/Images/FotosDePerfil/@usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Nome" alt="avatar">
+                                        }
+                                        else
+                                        {
+                                            <img width="50" height="50" src="~/Images/default-profile-pic.jpg" alt="avatar">
+                                        }
+                                        <div class="usy-name">
+                                            <h3>
+                                                @Html.ActionLink(linkText: usuario.Nome, actionName: nameof(UsuarioController.Perfil), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { usuarioID = usuario.ID }, htmlAttributes: null)
+                                            </h3>
+                                            <span>@usuario.Descricao</span>
+                                        </div>
+                                        @if (usuario.ID != Model.UsuarioLogado.ID)
+                                        {
+                                            <div class="col-lg-offset-11">
+                                                @if (!Model.AmizadesUsuarioLogado.Any(_ => (_.Convidado.ID == usuario.ID) && _.Status == Core.Enums.Status.Ativo))
+                                                {
+                                                    @Html.ActionLink(linkText: " ", actionName: nameof(UsuarioController.AdicionarAmigo), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { convidadoID = usuario.ID }, htmlAttributes: new { @class = "far fa-plus-square btn add-friend-button" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink(linkText: " ", actionName: nameof(UsuarioController.DesfazerAmizade), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { convidadoID = usuario.ID }, htmlAttributes: new { @class = "fas fa-user-minus btn add-friend-button" })
+                                                }
+                                            </div>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

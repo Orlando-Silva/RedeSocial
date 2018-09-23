@@ -140,10 +140,10 @@ namespace Services.Construtores
         }
         #endregion
 
-        public Usuario Montar(Usuario usuario) => CriadoEm(DateTime.UtcNow)
+        public Usuario Montar(Usuario usuario, bool encriptarSenha) => ComSenha(usuario.Senha, encriptarSenha)
+                                                    .CriadoEm(DateTime.UtcNow)
                                                     .ComLogin(usuario.Login)
-                                                    .ComEmail(usuario.Email)
-                                                    .ComSenha(usuario.Senha, usuario is default(Usuario))
+                                                    .ComEmail(usuario.Email)  
                                                         .ComNome(usuario.Nome)
                                                         .ComTelefone(usuario.Telefone)
                                                         .NasceuEm(usuario.DataDeNascimento)

@@ -16,6 +16,10 @@ namespace DAL.Repositórios
 
         public IEnumerable<Postagem> BuscarPorUsuario(int usuarioID) => Entidades.Where(_ => _.Autor.ID == usuarioID);
 
-        public IEnumerable<Postagem> BuscarFeed(int usuarioID, List<Amizades> amigos) => Entidades.Include(_ => _.Autor.Fotos).Where(_ => _.Autor.ID == usuarioID || amigos.Select(a => a.Solicitante.ID).Contains(_.Autor.ID) || amigos.Select(a => a.Convidado.ID).Contains(_.Autor.ID));
+        public IEnumerable<Postagem> Buscar(int usuarioID, List<int> amigos)
+        {
+            return Entidades.Include(_ => _.Autor.Fotos).Where(_ => _.Autor.ID == usuarioID  || amigos.Any(a => _.Autor.ID == a)).ToList();
+
+        }
     }
 }

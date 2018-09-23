@@ -6,6 +6,7 @@ using Services;
 using System;
 using System.Web;
 using System.Web.Mvc;
+using View.ViewModels;
 #endregion
 
 namespace View.Controllers
@@ -16,6 +17,7 @@ namespace View.Controllers
         private readonly UsuarioService UsuarioService;
         private readonly FotoDePerfilService FotoDePerfilService;
         private readonly PostagemService PostagemService;
+        private readonly AmizadeService AmizadeService;
         #endregion
 
         #region --Construtor--
@@ -24,6 +26,7 @@ namespace View.Controllers
             UsuarioService = new UsuarioService();
             FotoDePerfilService = new FotoDePerfilService();
             PostagemService = new PostagemService();
+            AmizadeService = new AmizadeService();
         }
         #endregion
 
@@ -57,6 +60,19 @@ namespace View.Controllers
         }
 
         [HttpGet]
+        public ActionResult BuscarUsuarios(string nome)
+        {
+            var usuarios = UsuarioService.BuscarPorNome(nome);
+            var usuarioLogado = UsuarioService.BuscarNaSessao(Session);
+            return View(
+                new BuscarUsuariosViewModel {
+                    Usuarios = usuarios,
+                    AmizadesUsuarioLogado = AmizadeService.Buscar(usuarioLogado.ID, Core.Enums.Status.Ativo),
+                    UsuarioLogado = usuarioLogado
+                });
+        }
+
+        [HttpGet]
         public ActionResult Perfil(int? usuarioID)
         {
             var usuario = UsuarioService.BuscarNaSessao(Session);
@@ -69,6 +85,7 @@ namespace View.Controllers
                 {
                     Usuario = usuarioPerfil,
                     UsuarioEdicao = usuario,
+                    Amigos = AmizadeService.BuscarAmigos(usuarioPerfil.ID, Core.Enums.Status.Ativo),
                     Postagens = PostagemService.BuscarPostagensPerfil(usuarioPerfil.ID),
                     FotoDePerfil = FotoDePerfilService.Buscar(usuario.ID),
                     PodeEditar = usuarioPerfil.ID == usuario.ID,
@@ -79,6 +96,30 @@ namespace View.Controllers
             {
                 return View(nameof(Login));
             }
+        }
+
+        public ActionResult AdicionarAmigo(int convidadoID)
+        {
+            var usuario = UsuarioService.BuscarNaSessao(Session);
+            if(usuario != null)
+            {
+                var convidado = UsuarioService.BuscarPorID(convidadoID);
+                if(convidado != null)
+                {
+                    var amizade = AmizadeService.Adicionar(usuario.ID, convidado.ID);
+                }
+
+            }
+            return Home();
+        }
+
+        public ActionResult DesfazerAmizade(int convidadoID)
+        {
+            var usuarioConvidado = UsuarioService.BuscarPorID(convidadoID);
+            var usuarioSession = UsuarioService.BuscarNaSessao(Session);
+            var amizade = AmizadeService.Buscar(usuarioSession.ID, usuarioConvidado.ID);
+            AmizadeService.Atualizar(amizade.ID, Core.Enums.Status.Inativo);
+            return Home();
         }
 
         public ActionResult Logout(Usuario _usuario)
@@ -95,7 +136,7 @@ namespace View.Controllers
             {
                 usuario = UsuarioService.Adicionar(usuario);
                 UsuarioService.IniciarSessao(Session, usuario);
-                return View(nameof(Home));
+                return Home();
             }
             catch (Exception exception)
             {

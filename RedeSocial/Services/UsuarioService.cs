@@ -6,6 +6,7 @@ using Helpers.Interfaces;
 using Services.Construtores;
 using Services.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Web;
 #endregion
 
@@ -44,7 +45,7 @@ namespace Services
 
         public Usuario Adicionar(Usuario _usuario)
         {
-            var usuario = new ConstrutorUsuario().Montar(_usuario);
+            var usuario = new ConstrutorUsuario().Montar(_usuario, true);
             UnidadeDeTrabalho.Usuarios.Adicionar(usuario);
             UnidadeDeTrabalho.Encerrar();
             return usuario;
@@ -53,7 +54,7 @@ namespace Services
         public Usuario Atualizar(Usuario usuarioAtualizado)
         {
             var usuarioAntigo = UnidadeDeTrabalho.Usuarios.Buscar(usuarioAtualizado.ID);
-            usuarioAntigo = new ConstrutorUsuario(usuarioAntigo).Montar(usuarioAtualizado);
+            usuarioAntigo = new ConstrutorUsuario(usuarioAntigo).Montar(usuarioAtualizado, false);
             UnidadeDeTrabalho.Encerrar();
             return usuarioAtualizado;
         }
@@ -61,6 +62,12 @@ namespace Services
         public Usuario Inativar(int usuarioID)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Usuario> BuscarPorNome(string nome)
+        {
+            var usuarios = UnidadeDeTrabalho.Usuarios.BuscarPorNome(nome);
+            return usuarios;
         }
         #endregion
     }

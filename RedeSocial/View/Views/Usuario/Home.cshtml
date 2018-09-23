@@ -16,7 +16,7 @@
                                 <div class="user-profile">
                                     <div class="username-dt">
                                         <div class="usr-pic">
-                                            @if (Model.Usuario.Fotos.Any(_ => _.Status == Core.Enums.Status.Ativo))
+                                            @if (Model.Usuario.Fotos != null && Model.Usuario.Fotos.Any(_ => _.Status == Core.Enums.Status.Ativo))
                                             {
                                                 <img width="110" height="110" src="~/Images/FotosDePerfil/@Model.Usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Nome" alt="avatar">
                                             }
@@ -65,7 +65,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <img width="50" height="50" src="~/Images/FotosDePerfil/default-profile-pic.jpg" alt="avatar">
+                                                    <img width="50" height="50" src="~/Images/default-profile-pic.jpg" alt="avatar">
                                                 }
                                                 <div class="usy-name">
                                                     <h3>@post.Autor.Nome</h3>

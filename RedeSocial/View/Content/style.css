@@ -3117,6 +3117,20 @@ footer {
     color: #1da1f2;
 }
 
+.margin-sides {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.add-friend-button {
+    font-size:30px;
+}
+
+.post-bar > li  {
+    width: 48.5%;
+}
+
+
 .fa-behance-square {
     color: #1769ff;
 }

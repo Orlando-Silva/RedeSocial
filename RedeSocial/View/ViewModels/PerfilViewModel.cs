@@ -11,6 +11,8 @@ namespace Core.ViewModels
 
         public List<Postagem> Postagens { get; set; }
 
+        public List<Usuario> Amigos { get; set; }
+
         public FotoDePerfil FotoDePerfil { get; set; }
 
         public Usuario UsuarioEdicao { get; set; }

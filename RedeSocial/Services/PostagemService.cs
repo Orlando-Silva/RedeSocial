@@ -38,10 +38,11 @@ namespace Services
 
         public List<Postagem> BuscarPostagensFeed(int usuarioID)
         {
-            //TODO :Alterar assim que criar o sistema de amizades:
-            var amigos = UnidadeDeTrabalho.Amizades.BuscarTodos(_ => _.Convidado.ID == usuarioID || _.Solicitante.ID == usuarioID).ToList();
+            var amigos = UnidadeDeTrabalho.Amizades.BuscarAmizades(usuarioID, Status.Ativo).ToList();
 
-            var postagens = UnidadeDeTrabalho.Postagens.BuscarFeed(usuarioID, amigos).ToList();
+            var amigosID = amigos.Select(_ => _.Convidado.ID);
+
+            var postagens = UnidadeDeTrabalho.Postagens.Buscar(usuarioID, amigosID.ToList()).ToList();
             return postagens;
         }
 

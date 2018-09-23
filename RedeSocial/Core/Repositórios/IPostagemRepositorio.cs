@@ -8,6 +8,6 @@ namespace Core.Repositórios
     public interface IPostagemRepositorio : IRepositorio<Postagem>
     {
         IEnumerable<Postagem> BuscarPorUsuario(int usuarioID);
-        IEnumerable<Postagem> BuscarFeed(int usuarioID, List<Amizades> amigos);
+        IEnumerable<Postagem> Buscar(int usuarioID, List<int> amigosID);
     }
 }

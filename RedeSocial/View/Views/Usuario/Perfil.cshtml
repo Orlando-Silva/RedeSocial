@@ -46,13 +46,13 @@
                                             }
                                             else
                                             {
-                                                if (Model.Usuario.Fotos != null)
+                                                if (Model.Usuario.Fotos != null && Model.Usuario.Fotos.Any())
                                                 {
-                                                    <img src="@Model.Usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Caminho" alt="Avatar">
+                                                    <img width="110" height="110" src="~/Images/FotosDePerfil/@Model.Usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Caminho" alt="Avatar">
                                                 }
                                                 else
                                                 {
-                                                    <img src="~/Images/default-profile-pic.jpg" alt="Avatar">
+                                                    <img width="110" height="110" src="~/Images/default-profile-pic.jpg" alt="Avatar">
                                                 }
                                             }
                                         </div>
@@ -151,7 +151,47 @@
                             </div>
                         </div>
                         <div id="amigos" class="tab-pane fade in">
-                            Hello World
+                            <main>
+                                <div class="main-section">
+                                    <div class="container">
+                                        <div class="main-section-data">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-4 pd-left-none no-pd">
+                                                    <div class="posts-section">
+                                                        <ul class="post-bar">
+                                                            @foreach (var usuario in Model.Amigos)
+                                                            {
+                                                                <li class="usy-dt alert alert-info margin-sides">
+                                                                    @if (usuario.Fotos != null && usuario.Fotos.Any(_ => _.Status == Core.Enums.Status.Ativo))
+                                                                    {
+                                                                        <img width="50" height="50" src="~/Images/FotosDePerfil/@usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Nome" alt="avatar">
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img width="50" height="50" src="~/Images/default-profile-pic.jpg" alt="avatar">
+                                                                    }
+                                                                    <div class="usy-name">
+                                                                        <h3>
+                                                                            @Html.ActionLink(linkText: usuario.Nome, actionName: nameof(UsuarioController.Perfil), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { usuarioID = usuario.ID }, htmlAttributes: null)
+                                                                        </h3>
+                                                                        <span>@usuario.Descricao</span>
+                                                                    </div>
+                                                                    @if (Model.PodeEditar)
+                                                                    {
+                                                                        <div class="col-lg-offset-11">                                 
+                                                                                @Html.ActionLink(linkText: " ", actionName: nameof(UsuarioController.DesfazerAmizade), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { convidadoID = usuario.ID }, htmlAttributes: new { @class = "fas fa-user-minus btn add-friend-button" })                                                                         
+                                                                        </div>
+                                                                    }
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
                         </div>
                     </div>
                 </div>

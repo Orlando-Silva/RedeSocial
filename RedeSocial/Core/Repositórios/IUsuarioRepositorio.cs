@@ -1,5 +1,6 @@
 ﻿#region --Using--
 using Core.Entidades;
+using System.Collections.Generic;
 #endregion
 
 namespace Core.Repositórios
@@ -8,5 +9,6 @@ namespace Core.Repositórios
     {
         bool Existe(Usuario usuario);
         Usuario BuscarPorLoginSenha(string login, string senha);
+        List<Usuario> BuscarPorNome(string nome);
     }
 }

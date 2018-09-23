@@ -28,10 +28,15 @@
                         @Html.ActionLink(" ", nameof(UsuarioController.Home), nameof(UsuarioController).Replace("Controller", string.Empty), new { @class = "fas fa-home cute-house" })
                     </div>
                     <div class="search-bar">
-                        <form>
-                            <input name="search" placeholder="Procure seus amigos" type="text">                           
+                        @using (Html.BeginForm(
+                        actionName: nameof(UsuarioController.BuscarUsuarios),
+                        controllerName: nameof(UsuarioController).Replace("Controller", ""),
+                        method: FormMethod.Get,
+                        htmlAttributes: null))
+                        {
+                            <input name="nome" id="nome" placeholder="Procure seus amigos" type="text">
                             <button type="submit"><i class="fas fa-search"></i></button>
-                        </form>
+                        }
                     </div>
                     <nav>
                         <div class="menu-btn">
