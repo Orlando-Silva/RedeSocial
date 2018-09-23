@@ -57,12 +57,6 @@ namespace Services.Construtores
             Entidade.Status = status;
             return this;
         }
-
-        public ConstrutorFotoDePerfil ComUsuario(int usuarioID)
-        {
-            Entidade.UsuarioID = usuarioID;
-            return this;
-        }
         #endregion
 
         public FotoDePerfil Montar(HttpPostedFileBase arquivo, int usuarioID,string diretorio)
@@ -74,7 +68,6 @@ namespace Services.Construtores
                     .ComStatus(Status.Ativo)
                     .ComTamanho(arquivo.ContentLength)
                     .ComExtensao(arquivo.ContentType)
-                    .ComUsuario(usuarioID)
                     .ComCaminho($"{ diretorio }\\{ Entidade.Nome }");
 
         }

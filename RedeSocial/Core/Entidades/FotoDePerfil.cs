@@ -19,9 +19,5 @@ namespace Core.Entidades
         public string Hash { get; set; }
 
         public Status Status { get; set; }
-
-        public Usuario Usuario { get; set; }
-
-        public int UsuarioID { get; set; }
     }
 }

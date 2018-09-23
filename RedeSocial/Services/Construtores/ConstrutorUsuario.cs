@@ -109,18 +109,6 @@ namespace Services.Construtores
             return this;
         }
 
-        public ConstrutorUsuario ComPostagens(IList<Postagem> postagems)
-        {
-            Entidade.Postagens = postagems;
-            return this;
-        }
-
-        public ConstrutorUsuario NovaPostagem(Postagem postagem)
-        {
-            Entidade.Postagens.Add(postagem);
-            return this;
-        }
-
         public ConstrutorUsuario ComComentarios(IList<Comentario> comentarios)
         {
             Entidade.Comentarios = comentarios;
@@ -142,6 +130,12 @@ namespace Services.Construtores
         public ConstrutorUsuario ComDescricao(string descricao)
         {
             Entidade.Descricao = descricao;
+            return this;
+        }
+
+        public ConstrutorUsuario ComFoto(FotoDePerfil fotoDePerfil)
+        {
+            Entidade.Fotos.Add(fotoDePerfil);
             return this;
         }
         #endregion

@@ -14,3 +14,5 @@ C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.csproj.CoreC
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.pdb
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.Migrations.RemovendoDuplicidadeDeReferencia.resources
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.Migrations.RemovendoDuplicidadeDeReferenciaNasPostagens.resources

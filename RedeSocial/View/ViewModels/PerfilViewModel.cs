@@ -1,5 +1,6 @@
 ﻿#region --Using--
 using Core.Entidades;
+using System.Collections.Generic;
 #endregion
 
 namespace Core.ViewModels
@@ -7,6 +8,8 @@ namespace Core.ViewModels
     public class PerfilViewModel
     {
         public Usuario Usuario { get; set; }
+
+        public List<Postagem> Postagens { get; set; }
 
         public FotoDePerfil FotoDePerfil { get; set; }
 

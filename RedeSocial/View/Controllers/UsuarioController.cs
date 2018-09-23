@@ -40,7 +40,7 @@ namespace View.Controllers
         [HttpGet]
         public ActionResult Home()
         {
-            var usuario = UsuarioService.BuscarNaSessao(Session);
+             var usuario = UsuarioService.BuscarNaSessao(Session);
             if (usuario is Usuario)
             {
                 return View(nameof(Home), new HomeViewModel
@@ -69,6 +69,7 @@ namespace View.Controllers
                 {
                     Usuario = usuarioPerfil,
                     UsuarioEdicao = usuario,
+                    Postagens = PostagemService.BuscarPostagensPerfil(usuarioPerfil.ID),
                     FotoDePerfil = FotoDePerfilService.Buscar(usuario.ID),
                     PodeEditar = usuarioPerfil.ID == usuario.ID,
                     FU_pass = encryptedID
@@ -132,7 +133,8 @@ namespace View.Controllers
                 string diretorio = Server.MapPath("~/Images/FotosDePerfil");
                 // TODO: Crop.
                 FotoDePerfilService.Adicionar(FotoDePerfil, usuarioID, diretorio);
-
+                var usuario = UsuarioService.BuscarPorID(usuarioID);
+                UsuarioService.IniciarSessao(Session, usuario);
                 return Perfil(usuarioID);
             }
             catch (Exception exception)

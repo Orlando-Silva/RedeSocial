@@ -16,13 +16,13 @@
                                 <div class="user-profile">
                                     <div class="username-dt">
                                         <div class="usr-pic">
-                                            @if (Model.FotoDePerfil != null)
+                                            @if (Model.Usuario.Fotos.Any(_ => _.Status == Core.Enums.Status.Ativo))
                                             {
-                                                <img src="~/Images/FotosDePerfil/@Model.FotoDePerfil.Nome" alt="avatar">
+                                                <img width="110" height="110" src="~/Images/FotosDePerfil/@Model.Usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Nome" alt="avatar">
                                             }
                                             else
                                             {
-                                                <img src="~/Images/default-profile-pic.jpg" alt="">
+                                                <img width="110" height="110"  src="~/Images/default-profile-pic.jpg" alt="">
                                             }
                                         </div>
                                     </div>
@@ -59,10 +59,22 @@
                                     <div class="post-bar">
                                         <div class="post_topbar">
                                             <div class="usy-dt">
-                                                <img src="images/resources/us-pic.png" alt="">
+                                                @if (post.Autor.Fotos.Any(_ => _.Status == Core.Enums.Status.Ativo))
+                                                {
+                                                    <img width="50" height="50" src="~/Images/FotosDePerfil/@post.Autor.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Nome" alt="avatar">
+                                                }
+                                                else
+                                                {
+                                                    <img width="50" height="50" src="~/Images/FotosDePerfil/default-profile-pic.jpg" alt="avatar">
+                                                }
                                                 <div class="usy-name">
                                                     <h3>@post.Autor.Nome</h3>
-                                                    <span><img src="images/clock.png" alt="">@post.Criado.ToLongDateString()</span>
+                                                    <span>
+                                                        <img src="images/clock.png" alt="">@{
+                                                            var dataPostada = string.Empty;
+                                                            dataPostada = (DateTime.UtcNow.Subtract(post.Criado).Days <= 1 ? ($"Hoje às { post.Criado.ToLocalTime().ToString("HH:mm") }") : post.Criado.ToLocalTime().ToLongDateString());
+                                                        } @dataPostada
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>

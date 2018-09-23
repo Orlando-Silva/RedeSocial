@@ -58,6 +58,14 @@
     <Compile Include="Migrations\201809150302271_InitialMigration.Designer.cs">
       <DependentUpon>201809150302271_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809231824409_RemovendoDuplicidadeDeReferencia.cs" />
+    <Compile Include="Migrations\201809231824409_RemovendoDuplicidadeDeReferencia.Designer.cs">
+      <DependentUpon>201809231824409_RemovendoDuplicidadeDeReferencia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809231922309_RemovendoDuplicidadeDeReferenciaNasPostagens.cs" />
+    <Compile Include="Migrations\201809231922309_RemovendoDuplicidadeDeReferenciaNasPostagens.Designer.cs">
+      <DependentUpon>201809231922309_RemovendoDuplicidadeDeReferenciaNasPostagens.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositórios\ComentarioRepositorio.cs" />
@@ -81,6 +89,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809150302271_InitialMigration.resx">
       <DependentUpon>201809150302271_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809231824409_RemovendoDuplicidadeDeReferencia.resx">
+      <DependentUpon>201809231824409_RemovendoDuplicidadeDeReferencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809231922309_RemovendoDuplicidadeDeReferenciaNasPostagens.resx">
+      <DependentUpon>201809231922309_RemovendoDuplicidadeDeReferenciaNasPostagens.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

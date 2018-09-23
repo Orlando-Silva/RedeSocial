@@ -45,6 +45,8 @@ namespace DAL.FluentAPI
             Property(_ => _.Descricao)
                .IsOptional()
                .HasMaxLength(512);
+
+            HasMany(_ => _.Fotos);
                 
         }
     }

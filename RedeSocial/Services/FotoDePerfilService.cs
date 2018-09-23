@@ -59,6 +59,10 @@ namespace Services
                 Inativar(foto.ID);
             }
             UnidadeDeTrabalho.FotosDePerfil.Adicionar(fotoDePerfil);
+
+            var usuario = UnidadeDeTrabalho.Usuarios.Buscar(usuarioID);
+            new ConstrutorUsuario(usuario).ComFoto(fotoDePerfil);
+
             UnidadeDeTrabalho.Encerrar();
             return fotoDePerfil;
         }

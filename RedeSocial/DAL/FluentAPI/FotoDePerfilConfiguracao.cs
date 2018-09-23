@@ -25,11 +25,6 @@ namespace DAL.FluentAPI
 
             Property(_ => _.Hash)
                     .HasMaxLength(512);
-
-            HasRequired(_ => _.Usuario)
-                    .WithMany(_ => _.Fotos)
-                    .HasForeignKey(_ => _.UsuarioID)
-                    .WillCascadeOnDelete(false);
         }
     }
 }

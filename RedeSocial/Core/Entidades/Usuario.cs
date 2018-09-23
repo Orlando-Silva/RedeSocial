@@ -40,8 +40,6 @@ namespace Core.Entidades
 
         public IList<FotoDePerfil> Fotos { get; set; }
 
-        public IList<Postagem> Postagens { get; set; }
-
         public IList<Comentario> Comentarios { get; set; }
     }
 }
