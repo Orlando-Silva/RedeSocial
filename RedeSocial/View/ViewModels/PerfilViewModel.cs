@@ -8,6 +8,8 @@ namespace Core.ViewModels
     {
         public Usuario Usuario { get; set; }
 
+        public FotoDePerfil FotoDePerfil { get; set; }
+
         public Usuario UsuarioEdicao { get; set; }
 
         public bool PodeEditar { get; set; }

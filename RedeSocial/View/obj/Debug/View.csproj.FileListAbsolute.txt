@@ -44,9 +44,6 @@ C:\Users\Aluno\source\repos\RedeSocial\RedeSocial\View\bin\System.Web.Mvc.xml
 C:\Users\Aluno\source\repos\RedeSocial\RedeSocial\View\obj\Debug\View.csprojResolveAssemblyReference.cache
 C:\Users\Aluno\source\repos\RedeSocial\RedeSocial\View\obj\Debug\View.dll
 C:\Users\Aluno\source\repos\RedeSocial\RedeSocial\View\obj\Debug\View.pdb
-C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\EntityFramework.xml
-C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\obj\Debug\View.csprojAssemblyReference.cache
-C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\obj\Debug\View.csproj.CoreCompileInputs.cache
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\ApplicationInsights.config
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\roslyn\csc.exe
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -66,6 +63,7 @@ C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\View.pdb
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Core.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\EntityFramework.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\EntityFramework.SqlServer.dll
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Helpers.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -82,11 +80,12 @@ C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\System.Web.Razor.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\System.Web.Webpages.Deployment.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\System.Web.Webpages.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\System.Web.Webpages.Razor.dll
-C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\DAL.dll
-C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Helpers.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Newtonsoft.Json.dll
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\DAL.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Core.pdb
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Helpers.pdb
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Services.pdb
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\EntityFramework.xml
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\EntityFramework.SqlServer.xml
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Microsoft.AI.ServerTelemetryChannel.xml
@@ -100,10 +99,11 @@ C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\System.Web.Webpages.D
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\System.Web.Webpages.Razor.xml
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\System.Web.Helpers.xml
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\System.Web.Mvc.xml
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Newtonsoft.Json.xml
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\DAL.pdb
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\DAL.dll.config
-C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Helpers.pdb
-C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\bin\Newtonsoft.Json.xml
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\obj\Debug\View.csprojAssemblyReference.cache
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\obj\Debug\View.csproj.CoreCompileInputs.cache
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\obj\Debug\View.csproj.CopyComplete
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\obj\Debug\View.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\View\obj\Debug\View.pdb

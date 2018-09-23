@@ -6,6 +6,6 @@ namespace Core.Repositórios
 {
     public interface IFotoDePerfilRepositorio : IRepositorio<FotoDePerfil>
     {
-
+        FotoDePerfil BuscarPorUsuario(int usuarioID);
     }
 }

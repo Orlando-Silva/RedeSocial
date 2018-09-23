@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="Construtores\Core\Construtor.cs" />
     <Compile Include="Construtores\ConstrutorUsuario.cs" />
+    <Compile Include="Construtores\ConstrutorFotoDePerfil.cs" />
+    <Compile Include="FotoDePerfilService.cs" />
+    <Compile Include="Interfaces\IFotoDePerfilService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="Interfaces\IUsuarioService.cs" />

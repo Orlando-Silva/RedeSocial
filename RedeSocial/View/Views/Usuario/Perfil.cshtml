@@ -25,9 +25,9 @@
                                                 htmlAttributes: new { enctype = "multipart/form-data" }))
                                                 {
                                                     <div class="container-image usr-pic">
-                                                        @if (Model.Usuario.Fotos != null)
+                                                        @if (Model.FotoDePerfil != null)
                                                         {
-                                                            <img class="image" src="@Model.Usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Caminho" alt="Avatar">
+                                                            <img class="image" src="~/Images/FotosDePerfil/@Model.FotoDePerfil.Nome" alt="Avatar">
                                                         }
                                                         else
                                                         {
@@ -41,7 +41,7 @@
                                                     </div>
                                                     <input type="file" class="hidden" name="FotoDePerfil" id="FotoDePerfil" />
                                                     <input type="submit" class="hidden" id="sender" />
-
+                                                    @Html.HiddenFor(expression: _ => _.FU_pass, htmlAttributes: new { name = "p-target-w-f-u" })
                                                 }
                                             }
                                             else

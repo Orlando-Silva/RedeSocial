@@ -4,6 +4,7 @@ using Core.ViewModels;
 using Helpers;
 using Services;
 using System;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 #endregion
@@ -14,12 +15,15 @@ namespace View.Controllers
     {
         #region --Atributos--
         private readonly UsuarioService UsuarioService;
+        private readonly FotoDePerfilService FotoDePerfilService;
+
         #endregion
 
         #region --Construtor--
         public UsuarioController()
         {
             UsuarioService = new UsuarioService();
+            FotoDePerfilService = new FotoDePerfilService();
         }
         #endregion
 
@@ -41,7 +45,8 @@ namespace View.Controllers
             {         
                 return View(nameof(Home), new HomeViewModel
                 {
-                    Usuario = usuario
+                    Usuario = usuario,
+                    FotoDePerfil = FotoDePerfilService.Buscar(usuario.ID)
                 });
             }
             else
@@ -61,8 +66,9 @@ namespace View.Controllers
                 var usuarioPerfil = UsuarioService.BuscarPorID(usuarioID.Value);
                 return View(nameof(Perfil), new PerfilViewModel
                 {
-                    Usuario =  usuarioPerfil,
+                    Usuario = usuarioPerfil,
                     UsuarioEdicao = usuario,
+                    FotoDePerfil = FotoDePerfilService.Buscar(usuario.ID),
                     PodeEditar = usuarioPerfil.ID == usuario.ID,
                     FU_pass = encryptedID
                 });
@@ -117,12 +123,16 @@ namespace View.Controllers
         }
 
         [HttpPost]
-        public ActionResult AtualizarAvatar(HttpPostedFileBase FotoDePerfil)
+        public ActionResult AtualizarAvatar(HttpPostedFileBase FotoDePerfil, PerfilViewModel perfilViewModel)
         {
             try
             {
-                var yeet = "If we got here, we should drink boys";
-                return View();
+                var usuarioID = int.Parse(Seguranca.Decriptar(perfilViewModel.FU_pass));
+                string diretorio = Server.MapPath("~/Images/FotosDePerfil");
+                // TODO: Crop.
+                FotoDePerfilService.Adicionar(FotoDePerfil, usuarioID, diretorio);
+
+                return Perfil(usuarioID);
             }
             catch (Exception exception)
             {

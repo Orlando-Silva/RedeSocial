@@ -16,9 +16,9 @@
                                 <div class="user-profile">
                                     <div class="username-dt">
                                         <div class="usr-pic">
-                                            @if (Model.Usuario.Fotos != null)
+                                            @if (Model.FotoDePerfil!= null)
                                             {
-                                                <img src="@Model.Usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Caminho" alt="">
+                                                <img src="~/Images/FotosDePerfil/@Model.FotoDePerfil.Nome" alt="avatar">
                                             }
                                             else
                                             {
