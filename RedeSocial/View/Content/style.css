@@ -159,7 +159,7 @@ nav ul li a,
 .suggestion-usd > span i,
 .view-more > a,
 .tags-sec ul li a,
-.post-st ul li a,
+.post-st ul li button,
 .ed-opts > a,
 .bk-links li a,
 .like-com li a,
@@ -204,7 +204,7 @@ nav ul li:hover > ul,
 .search-bar form input,
 .search-bar form button,
 .search_form form input,
-.post-st ul li a,
+.post-st ul li input,
 .post-bar,
 .bk-links li i,
 .bid_now,
@@ -1140,7 +1140,7 @@ main {
             margin-right: 0;
         }
 
-        .post-st ul li a {
+        .post-st ul li button {
             color: #b2b2b2;
             font-size: 16px;
             display: inline-block;
@@ -1151,8 +1151,8 @@ main {
             font-weight: 500;
         }
 
-            .post-st ul li a:hover,
-            .post-st ul li a.active {
+            .post-st ul li button:hover,
+            .post-st ul li button.active {
                 background-color: #e44d3a;
                 color: #fff;
             }

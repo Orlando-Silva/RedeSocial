@@ -16,7 +16,7 @@
                                 <div class="user-profile">
                                     <div class="username-dt">
                                         <div class="usr-pic">
-                                            @if (Model.FotoDePerfil!= null)
+                                            @if (Model.FotoDePerfil != null)
                                             {
                                                 <img src="~/Images/FotosDePerfil/@Model.FotoDePerfil.Nome" alt="avatar">
                                             }
@@ -32,7 +32,7 @@
                                 </div>
                                 <ul class="user-fw-status">
                                     <li>
-                                        @Html.ActionLink(linkText: "Ver Perfil", actionName: nameof(UsuarioController.Perfil), controllerName: nameof(UsuarioController).Replace("Controller",""), routeValues: new { usuarioID = Model.Usuario.ID },htmlAttributes: null)
+                                        @Html.ActionLink(linkText: "Ver Perfil", actionName: nameof(UsuarioController.Perfil), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { usuarioID = Model.Usuario.ID }, htmlAttributes: null)
                                     </li>
                                 </ul>
                             </div>
@@ -40,13 +40,43 @@
                     </div>
                     <div class="col-lg-6 col-md-8 no-pd">
                         <div class="main-ws-sec">
-                            <textarea class="post-topbar">
-                            </textarea>
-                            <div class="post-st margin-bottom">
-                                <ul>
-                                    <li><a class="post-jb active" href="#" title="">Postar</a></li>
-                                </ul>
-                            </div>
+                            @using (Html.BeginForm(
+                            actionName: nameof(UsuarioController.Postar),
+                            controllerName: nameof(UsuarioController).Replace("Controller", ""),
+                            method: FormMethod.Post,
+                            htmlAttributes: null))
+                            {
+                                @Html.TextAreaFor(expression: _ => _.NovaPostagem.Corpo, htmlAttributes: new { @class = "post-topbar" })
+                                <div class="post-st margin-bottom">
+                                    <ul>
+                                        <li><button type="submit" class="btn active">Postar</button></li>
+                                    </ul>
+                                </div>
+                            }
+                            @foreach (var post in Model.Postagens.OrderByDescending(_ => _.Criado))
+                            {
+                                <div class="posts-section">
+                                    <div class="post-bar">
+                                        <div class="post_topbar">
+                                            <div class="usy-dt">
+                                                <img src="images/resources/us-pic.png" alt="">
+                                                <div class="usy-name">
+                                                    <h3>@post.Autor.Nome</h3>
+                                                    <span><img src="images/clock.png" alt="">@post.Criado.ToLongDateString()</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="job_descp">
+                                            <p>@post.Corpo</p>
+                                        </div>
+                                        <div class="job-status-bar">
+                                            <ul class="like-com">
+                                                <li><a href="#" title="" class="com">Sem Comentários</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                             <div class="posts-section">
                                 <div class="post-bar">
                                     <div class="post_topbar">

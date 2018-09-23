@@ -4,7 +4,6 @@ using Core.ViewModels;
 using Helpers;
 using Services;
 using System;
-using System.IO;
 using System.Web;
 using System.Web.Mvc;
 #endregion
@@ -16,7 +15,7 @@ namespace View.Controllers
         #region --Atributos--
         private readonly UsuarioService UsuarioService;
         private readonly FotoDePerfilService FotoDePerfilService;
-
+        private readonly PostagemService PostagemService;
         #endregion
 
         #region --Construtor--
@@ -24,6 +23,7 @@ namespace View.Controllers
         {
             UsuarioService = new UsuarioService();
             FotoDePerfilService = new FotoDePerfilService();
+            PostagemService = new PostagemService();
         }
         #endregion
 
@@ -42,11 +42,12 @@ namespace View.Controllers
         {
             var usuario = UsuarioService.BuscarNaSessao(Session);
             if (usuario is Usuario)
-            {         
+            {
                 return View(nameof(Home), new HomeViewModel
                 {
                     Usuario = usuario,
-                    FotoDePerfil = FotoDePerfilService.Buscar(usuario.ID)
+                    FotoDePerfil = FotoDePerfilService.Buscar(usuario.ID),
+                    Postagens = PostagemService.BuscarPostagensFeed(usuario.ID)
                 });
             }
             else
@@ -140,20 +141,37 @@ namespace View.Controllers
             }
         }
 
-
         [HttpPost]
         public ActionResult Logar(Usuario usuario)
         {
             try
             {
                 usuario.Senha = Seguranca.Encriptar(usuario.Senha);
-                UsuarioService.IniciarSessao(Session, usuario);          
+                UsuarioService.IniciarSessao(Session, usuario);
                 return Home();
             }
             catch (Exception exception)
             {
                 ModelState.AddModelError(string.Empty, exception.Message);
                 return View(nameof(Login), usuario);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Postar(HomeViewModel homeViewModel)
+        {
+            try
+            {
+                var usuario = UsuarioService.BuscarNaSessao(Session);
+                if (usuario != null)
+                {
+                    PostagemService.Adicionar(homeViewModel.NovaPostagem.Corpo, usuario.ID);
+                }
+                return Home();
+            }
+            catch (Exception exception)
+            { 
+                return HttpNotFound(exception.Message);
             }
         }
         #endregion
