@@ -30,7 +30,7 @@
                             <div class="col-lg-6 user-edit-form">
                                 @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Estado, htmlAttributes: new { placeholder = "Estado", type = "text", required = "required", @class = "form-control" })
                                 @Html.TextAreaFor(expression: _ => _.UsuarioEdicao.Descricao, htmlAttributes: new { placeholder = "Descreva-se", type = "text", @class = "form-control" })
-                                @Html.HiddenFor(expression: _ => _.FU_pass, htmlAttributes: new { name = "p-target-w-f-u" })
+                                @Html.HiddenFor(expression: _ => _.PasseEncriptado, htmlAttributes: new { name = "p-target-w-f-u" })
                             </div>
                         </div>
 

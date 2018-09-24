@@ -13,12 +13,20 @@ namespace Core.ViewModels
 
         public List<Usuario> Amigos { get; set; }
 
-        public FotoDePerfil FotoDePerfil { get; set; }
-
         public Usuario UsuarioEdicao { get; set; }
 
         public bool PodeEditar { get; set; }
 
-        public string FU_pass { get; set; }
+        public string PasseEncriptado { get; set; }
+
+        public PerfilViewModel(Usuario usuario, List<Postagem> postagens, List<Usuario> amigos, Usuario usuarioEdicao, bool podeEditar, string passeEncriptado)
+        {
+            Usuario = usuario;
+            Postagens = postagens;
+            Amigos = amigos;
+            UsuarioEdicao = usuarioEdicao;
+            PodeEditar = podeEditar;
+            PasseEncriptado = passeEncriptado;
+        }
     }
 }

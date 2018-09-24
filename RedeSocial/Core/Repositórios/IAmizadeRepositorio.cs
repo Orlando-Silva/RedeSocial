@@ -6,9 +6,9 @@ using System.Collections.Generic;
 
 namespace Core.Repositórios
 {
-    public interface IAmizadeRepositorio : IRepositorio<Amizades>
+    public interface IAmizadeRepositorio : IRepositorio<Amizade>
     {
-        List<Amizades> BuscarAmizades(int usuarioID, Status status);
+        List<Amizade> BuscarAmizades(int usuarioID, Status status);
         List<Usuario> BuscarAmigos(int usuarioID, Status status);
     }
 }

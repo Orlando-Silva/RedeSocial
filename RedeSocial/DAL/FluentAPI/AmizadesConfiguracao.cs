@@ -5,7 +5,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace DAL.FluentAPI
 {
-    public class AmizadesConfiguracao : EntityTypeConfiguration<Amizades>
+    public class AmizadesConfiguracao : EntityTypeConfiguration<Amizade>
     {
         public AmizadesConfiguracao()
         {

@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace DAL.Repositórios
 {
-    public class AmizadeRepositorio : Repositorio<Amizades>, IAmizadeRepositorio
+    public class AmizadeRepositorio : Repositorio<Amizade>, IAmizadeRepositorio
     {
         public AmizadeRepositorio(DbContext _contexto) : base(_contexto) { }
 
@@ -18,7 +18,7 @@ namespace DAL.Repositórios
             return Entidades.Where(_ => _.Solicitante.ID == usuarioID && _.Status == status).Select(_ => _.Convidado).ToList();
         }
 
-        public List<Amizades> BuscarAmizades(int usuarioID, Status status)
+        public List<Amizade> BuscarAmizades(int usuarioID, Status status)
         {
             return Entidades.Include(_ => _.Convidado).Include(_ => _.Convidado.Fotos).Include(_ => _.Solicitante).Include(_ => _.Solicitante.Fotos).Where(_ => _.Solicitante.ID == usuarioID && _.Status == status).ToList();
         }

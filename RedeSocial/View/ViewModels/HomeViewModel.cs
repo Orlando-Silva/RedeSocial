@@ -7,9 +7,18 @@ namespace Core.ViewModels
 {
     public  class HomeViewModel
     {
+        #region --Atributos--
         public Usuario Usuario { get; set; }
-        public FotoDePerfil FotoDePerfil { get; set; }
         public Postagem NovaPostagem { get; set; }
         public List<Postagem> Postagens { get; set; }
+        #endregion
+
+        #region --Construtor--
+        public HomeViewModel(Usuario usuario, List<Postagem> postagens)
+        {
+            Usuario = usuario;
+            Postagens = postagens;
+        }
+        #endregion
     }
 }

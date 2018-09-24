@@ -7,13 +7,13 @@ using System;
 
 namespace Services.Construtores
 {
-    public class ConstrutorAmizade : Construtor<Amizades>
+    public class ConstrutorAmizade : Construtor<Amizade>
     {
         public ConstrutorAmizade()
         {
         }
 
-        public ConstrutorAmizade(Amizades _entity) : base(_entity)
+        public ConstrutorAmizade(Amizade _entity) : base(_entity)
         {
         }
 
@@ -41,7 +41,7 @@ namespace Services.Construtores
             return this;
         }
 
-        public Amizades Montar(int solicitanteID, int convidadoID) => ComSolicitante(solicitanteID)
+        public Amizade Montar(int solicitanteID, int convidadoID) => ComSolicitante(solicitanteID)
                                                                             .ComConvidado(convidadoID)
                                                                             .ComStatus(Status.Ativo)
                                                                             .CriadoEm(DateTime.UtcNow);

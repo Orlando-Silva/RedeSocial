@@ -41,7 +41,7 @@
                                                     </div>
                                                     <input type="file" class="hidden" name="FotoDePerfil" id="FotoDePerfil" />
                                                     <input type="submit" class="hidden" id="sender" />
-                                                    @Html.HiddenFor(expression: _ => _.FU_pass, htmlAttributes: new { name = "p-target-w-f-u" })
+                                                    @Html.HiddenFor(expression: _ => _.PasseEncriptado, htmlAttributes: new { name = "p-target-w-f-u" })
                                                 }
                                             }
                                             else
@@ -84,7 +84,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <img width="50" height="50" src="~/Images/FotosDePerfil/default-profile-pic.jpg" alt="avatar">
+                                                    <img width="50" height="50" src="~/Images/default-profile-pic.jpg" alt="avatar">
                                                 }
                                                 <div class="usy-name">
                                                     <h3>@post.Autor.Nome</h3>

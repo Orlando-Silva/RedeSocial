@@ -23,10 +23,11 @@ namespace Helpers
 
         public static T BuscarNaSessao<T>(HttpSessionStateBase sessao, IValidadorDeSessao<T> Validador) where T : class
         {
-            var objeto = sessao[nameof(T)]?.ToString();
 
-            if (objeto is null)
+            if (sessao[nameof(T)]?.ToString() == null)
                 return null;
+
+            var objeto = sessao[nameof(T)]?.ToString();
 
             var objecto = Seguranca.Decriptar(objeto);
 

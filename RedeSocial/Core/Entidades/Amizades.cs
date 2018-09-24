@@ -5,7 +5,7 @@ using System;
 
 namespace Core.Entidades
 {
-    public class Amizades
+    public class Amizade
     {
         public int ID { get; set; }
 

@@ -3,4 +3,3 @@ C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Core\bin\Debug\Core.pdb
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Core\obj\Debug\Core.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Core\obj\Debug\Core.pdb
-C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\Core\obj\Debug\Core.csprojAssemblyReference.cache

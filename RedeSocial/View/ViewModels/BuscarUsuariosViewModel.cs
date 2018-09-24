@@ -10,8 +10,15 @@ namespace View.ViewModels
 {
     public class BuscarUsuariosViewModel
     {
-        public List<Usuario> Usuarios { get; set; }
-        public List<Amizades> AmizadesUsuarioLogado { get; set; }
-        public Usuario UsuarioLogado { get; set; }
+        public List<Usuario> UsuariosEncontrados { get; set; }
+        public List<Amizade> Amizades { get; set; }
+        public Usuario Usuario { get; set; }
+
+        public BuscarUsuariosViewModel(Usuario usuario, List<Usuario> usuariosEncontrados, List<Amizade> amizades)
+        {
+            Usuario = usuario;
+            Amizades = amizades;
+            UsuariosEncontrados = usuariosEncontrados;
+        }
     }
 }

@@ -8,13 +8,15 @@ namespace Services.Interfaces
 {
     public interface IUsuarioService<T> where T : Usuario
     {
-        T BuscarPorID(int ID);     
-        T Inativar(int usuarioID);
         T Adicionar(Usuario _usuario);
         T Atualizar(Usuario _usuario);
-        T BuscarNaSessao(HttpSessionStateBase sessao);
-        void IniciarSessao(HttpSessionStateBase sessao, T usuario);
-        void FinalizarSessao(HttpSessionStateBase sessao);
+
+        T BuscarPorID(int ID);
         List<T> BuscarPorNome(string nome);
+
+        void FinalizarSessao(HttpSessionStateBase sessao);
+
+        T Inativar(int usuarioID);
+        void IniciarSessao(HttpSessionStateBase sessao, T usuario);
     }
 }

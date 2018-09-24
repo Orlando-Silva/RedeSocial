@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Services
 {
-    public class AmizadeService : Service, IAmizadeService<Amizades>
+    public class AmizadeService : Service, IAmizadeService<Amizade>
     {
         #region --Atributos--
         private static UnidadeDeTrabalho UnidadeDeTrabalho { get { return BuscarUnidadeDeTrabalho(); } }
@@ -24,7 +24,7 @@ namespace Services
         }
         #endregion
 
-        public Amizades Adicionar(int solicitanteID, int convidadoID)
+        public Amizade Adicionar(int solicitanteID, int convidadoID)
         {
             var amizadeExistente = Verificar(solicitanteID, convidadoID);
 
@@ -43,7 +43,7 @@ namespace Services
             return amizadeExistente;
         }
 
-        public Amizades Atualizar(int amizadeID, Status status)
+        public Amizade Atualizar(int amizadeID, Status status)
         {
             var amizade = UnidadeDeTrabalho.Amizades.Buscar(amizadeID);
             if(amizade != null)
@@ -54,16 +54,16 @@ namespace Services
             return amizade;
         }
 
-        public List<Amizades> Buscar(int usuarioID, Status status) => UnidadeDeTrabalho.Amizades.BuscarTodos(_ => _.Solicitante.ID == usuarioID || _.Convidado.ID == usuarioID && _.Status == status).ToList();
+        public List<Amizade> Buscar(int usuarioID, Status status) => UnidadeDeTrabalho.Amizades.BuscarTodos(_ => _.Solicitante.ID == usuarioID || _.Convidado.ID == usuarioID && _.Status == status).ToList();
 
         public List<Usuario> BuscarAmigos(int usuarioID, Status status) => UnidadeDeTrabalho.Amizades.BuscarAmigos(usuarioID, status);
 
-        public Amizades Verificar(int solicitanteID, int convidadoID)
+        public Amizade Verificar(int solicitanteID, int convidadoID)
         {
             return UnidadeDeTrabalho.Amizades.Buscar(_ => _.Solicitante.ID == solicitanteID && _.Convidado.ID == convidadoID);
         }
 
-        public Amizades Buscar(int solicitanteID, int convidadoID)
+        public Amizade Buscar(int solicitanteID, int convidadoID)
         {
             return UnidadeDeTrabalho.Amizades.Buscar(_ => _.Solicitante.ID == solicitanteID && _.Convidado.ID == convidadoID);
         }

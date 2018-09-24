@@ -18,6 +18,13 @@ namespace View.Controllers
         private readonly FotoDePerfilService FotoDePerfilService;
         private readonly PostagemService PostagemService;
         private readonly AmizadeService AmizadeService;
+        private Usuario Usuario
+        {
+            get
+            {
+                return UsuarioService.BuscarNaSessao(Session);
+            }
+        }
         #endregion
 
         #region --Construtor--
@@ -43,88 +50,126 @@ namespace View.Controllers
         [HttpGet]
         public ActionResult Home()
         {
-             var usuario = UsuarioService.BuscarNaSessao(Session);
-            if (usuario is Usuario)
+            try
             {
-                return View(nameof(Home), new HomeViewModel
+                if (Usuario != null)
                 {
-                    Usuario = usuario,
-                    FotoDePerfil = FotoDePerfilService.Buscar(usuario.ID),
-                    Postagens = PostagemService.BuscarPostagensFeed(usuario.ID)
-                });
+                    var postagens = PostagemService.BuscarPostagensFeed(Usuario.ID);
+                    return View(nameof(Home), new HomeViewModel(Usuario, postagens));
+                }
+                else
+                {
+                    return View(nameof(Login));
+                }
             }
-            else
+            catch (Exception exception)
             {
-                return View(nameof(Login));
+                return HttpNotFound(exception.Message);
             }
         }
 
         [HttpGet]
         public ActionResult BuscarUsuarios(string nome)
         {
-            var usuarios = UsuarioService.BuscarPorNome(nome);
-            var usuarioLogado = UsuarioService.BuscarNaSessao(Session);
-            return View(
-                new BuscarUsuariosViewModel {
-                    Usuarios = usuarios,
-                    AmizadesUsuarioLogado = AmizadeService.Buscar(usuarioLogado.ID, Core.Enums.Status.Ativo),
-                    UsuarioLogado = usuarioLogado
-                });
+            try
+            {
+                if (Usuario != null)
+                {
+                    var usuariosEncontrados = UsuarioService.BuscarPorNome(nome);
+                    var amizades = AmizadeService.Buscar(Usuario.ID, Core.Enums.Status.Ativo);
+                    return View(new BuscarUsuariosViewModel(Usuario, usuariosEncontrados, amizades));
+                }
+                else
+                {
+                    return View(nameof(Login));
+                }
+            }
+            catch (Exception exception)
+            {
+                return HttpNotFound(exception.Message);
+            }
         }
 
         [HttpGet]
         public ActionResult Perfil(int? usuarioID)
         {
-            var usuario = UsuarioService.BuscarNaSessao(Session);
-
-            if (usuario is Usuario && usuarioID is int)
+            try
             {
-                var encryptedID = Seguranca.Encriptar(usuario.ID.ToString());
-                var usuarioPerfil = UsuarioService.BuscarPorID(usuarioID.Value);
-                return View(nameof(Perfil), new PerfilViewModel
+                if (Usuario != null)
                 {
-                    Usuario = usuarioPerfil,
-                    UsuarioEdicao = usuario,
-                    Amigos = AmizadeService.BuscarAmigos(usuarioPerfil.ID, Core.Enums.Status.Ativo),
-                    Postagens = PostagemService.BuscarPostagensPerfil(usuarioPerfil.ID),
-                    FotoDePerfil = FotoDePerfilService.Buscar(usuario.ID),
-                    PodeEditar = usuarioPerfil.ID == usuario.ID,
-                    FU_pass = encryptedID
-                });
+
+                    if (!(usuarioID is int) || usuarioID.Value <= 0)
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+
+                    var IDEncriptado = Seguranca.Encriptar(Usuario.ID.ToString());
+                    var perfil = UsuarioService.BuscarPorID(usuarioID.Value);
+                    var postagens = PostagemService.BuscarPostagensPerfil(perfil.ID);
+                    var amigos = AmizadeService.BuscarAmigos(perfil.ID, Core.Enums.Status.Ativo);
+
+                    return View(nameof(Perfil), new PerfilViewModel(usuario: perfil, postagens: postagens, amigos: amigos, usuarioEdicao: Usuario, podeEditar: perfil.ID == Usuario.ID, passeEncriptado: IDEncriptado));
+                }
+                else
+                {
+                    return View(nameof(Login));
+                }
             }
-            else
+            catch (Exception exception)
             {
-                return View(nameof(Login));
+                return HttpNotFound(exception.Message);
             }
         }
 
+        [HttpGet]
         public ActionResult AdicionarAmigo(int convidadoID)
         {
-            var usuario = UsuarioService.BuscarNaSessao(Session);
-            if(usuario != null)
+            try
             {
-                var convidado = UsuarioService.BuscarPorID(convidadoID);
-                if(convidado != null)
+                if (Usuario != null)
                 {
-                    var amizade = AmizadeService.Adicionar(usuario.ID, convidado.ID);
-                }
+                    var convidado = UsuarioService.BuscarPorID(convidadoID);
 
+                    if (convidado != null)
+                    {
+                        var amizade = AmizadeService.Adicionar(Usuario.ID, convidado.ID);
+                    }
+
+                    return Home();
+                }
+                else
+                {
+                    return View(nameof(Login));
+                }
             }
-            return Home();
+            catch (Exception exception)
+            {
+                return HttpNotFound(exception.Message);
+            }
         }
 
+        [HttpGet]
         public ActionResult DesfazerAmizade(int convidadoID)
         {
-            var usuarioConvidado = UsuarioService.BuscarPorID(convidadoID);
-            var usuarioSession = UsuarioService.BuscarNaSessao(Session);
-            var amizade = AmizadeService.Buscar(usuarioSession.ID, usuarioConvidado.ID);
-            AmizadeService.Atualizar(amizade.ID, Core.Enums.Status.Inativo);
-            return Home();
-        }
+            try
+            {
+                if (Usuario != null)
+                {
+                    var usuarioConvidado = UsuarioService.BuscarPorID(convidadoID);
+                    var amizade = AmizadeService.Buscar(Usuario.ID, usuarioConvidado.ID);
 
-        public ActionResult Logout(Usuario _usuario)
-        {
-            return View(nameof(Login));
+                    AmizadeService.Atualizar(amizade.ID, Core.Enums.Status.Inativo);
+                    return Home();
+                }
+                else
+                {
+                    return View(nameof(Login));
+                }
+            }
+            catch (Exception exception)
+            {
+                return HttpNotFound(exception.Message);
+            }
         }
         #endregion
 
@@ -149,7 +194,7 @@ namespace View.Controllers
         {
             try
             {
-                var usuarioID = int.Parse(Seguranca.Decriptar(perfilViewModel.FU_pass));
+                var usuarioID = int.Parse(Seguranca.Decriptar(perfilViewModel.PasseEncriptado));
                 var usuario = UsuarioService.BuscarPorID(usuarioID);
 
                 usuario = ObjectHelper.MergeObjects(usuario, perfilViewModel.UsuarioEdicao);
@@ -170,7 +215,7 @@ namespace View.Controllers
         {
             try
             {
-                var usuarioID = int.Parse(Seguranca.Decriptar(perfilViewModel.FU_pass));
+                var usuarioID = int.Parse(Seguranca.Decriptar(perfilViewModel.PasseEncriptado));
                 string diretorio = Server.MapPath("~/Images/FotosDePerfil");
                 // TODO: Crop.
                 FotoDePerfilService.Adicionar(FotoDePerfil, usuarioID, diretorio);
@@ -213,9 +258,15 @@ namespace View.Controllers
                 return Home();
             }
             catch (Exception exception)
-            { 
+            {
                 return HttpNotFound(exception.Message);
             }
+        }
+
+        [HttpPost]
+        public ActionResult Logout(Usuario _usuario)
+        {
+            return View(nameof(Login));
         }
         #endregion
     }
