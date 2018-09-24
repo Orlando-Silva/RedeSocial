@@ -19,6 +19,11 @@ namespace Core.ViewModels
 
         public string PasseEncriptado { get; set; }
 
+        public PerfilViewModel()
+        {
+
+        }
+
         public PerfilViewModel(Usuario usuario, List<Postagem> postagens, List<Usuario> amigos, Usuario usuarioEdicao, bool podeEditar, string passeEncriptado)
         {
             Usuario = usuario;

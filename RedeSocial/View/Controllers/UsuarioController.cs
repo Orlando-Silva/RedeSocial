@@ -18,6 +18,7 @@ namespace View.Controllers
         private readonly FotoDePerfilService FotoDePerfilService;
         private readonly PostagemService PostagemService;
         private readonly AmizadeService AmizadeService;
+        private readonly ComentarioService ComentarioService;
         private Usuario Usuario
         {
             get
@@ -34,6 +35,7 @@ namespace View.Controllers
             FotoDePerfilService = new FotoDePerfilService();
             PostagemService = new PostagemService();
             AmizadeService = new AmizadeService();
+            ComentarioService = new ComentarioService();
         }
         #endregion
 
@@ -159,6 +161,28 @@ namespace View.Controllers
                     var amizade = AmizadeService.Buscar(Usuario.ID, usuarioConvidado.ID);
 
                     AmizadeService.Atualizar(amizade.ID, Core.Enums.Status.Inativo);
+                    return Home();
+                }
+                else
+                {
+                    return View(nameof(Login));
+                }
+            }
+            catch (Exception exception)
+            {
+                return HttpNotFound(exception.Message);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Comentar(string comentario, string postagemID)
+        {
+            try
+            {
+                if (Usuario != null)
+                {
+                    var postDecriptado = int.Parse(Seguranca.Decriptar(postagemID));
+                    ComentarioService.Adicionar(comentario, Usuario.ID, postDecriptado);
                     return Home();
                 }
                 else

@@ -31,7 +31,7 @@
                                         </div>
                                         @if (usuario.ID != Model.Usuario.ID)
                                         {
-                                            <div class="col-lg-offset-11">
+                                            <div class="col-lg-offset-10">
                                                 @if (!Model.Amizades.Any(_ => (_.Convidado.ID == usuario.ID) && _.Status == Core.Enums.Status.Ativo))
                                                 {
                                                     @Html.ActionLink(linkText: " ", actionName: nameof(UsuarioController.AdicionarAmigo), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { convidadoID = usuario.ID }, htmlAttributes: new { @class = "far fa-plus-square btn add-friend-button" })

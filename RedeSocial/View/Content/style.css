@@ -2963,6 +2963,15 @@ footer {
     margin-top: -40px;
 }
 
+.margin-soft
+{
+    margin-top: 10px !important;
+}
+
+.cool-border {
+    border: 1px solid #e5e5e5;
+}
+
 .user-pro-img {
     float: left;
     width: 100%;

@@ -1,4 +1,5 @@
 ﻿@model  Core.ViewModels.PerfilViewModel
+@using Helpers
 @using View.Controllers
 @{
     ViewBag.Title = "Perfil";
@@ -100,11 +101,51 @@
                                         <div class="job_descp">
                                             <p>@post.Corpo</p>
                                         </div>
-                                        <div class="job-status-bar">
-                                            <ul class="like-com">
-                                                <li><a href="#" title="" class="com">Sem Comentários</a></li>
-                                            </ul>
-                                        </div>
+                                        @using (Html.BeginForm(
+                                                                               actionName: nameof(UsuarioController.Comentar),
+                                                                               controllerName: nameof(UsuarioController).Replace("Controller", ""),
+                                                                               method: FormMethod.Post,
+                                                                               htmlAttributes: null))
+                                        {
+                                            <div class="job-status-bar">
+                                                <textarea id="comentario" name="comentario" class="job-status-bar form-control" placeholder="Pressione enter para enviar o comentário."></textarea>
+                                                <button type="submit" class="hidden"></button>
+                                                <input type="text" id="postagemID" name="postagemID" value="@Seguranca.Encriptar(post.ID.ToString())" class="hidden" />
+                                            </div>
+                                        }
+                                        @foreach (var comentario in post.Comentarios)
+                                        {
+                                            <div class="cool-border">
+                                                <div class="usy-dt usy-name job-status-bar col-lg-12">
+                                                    <div class="row">
+                                                        @if (comentario.Autor.Fotos.Any(_ => _.Status == Core.Enums.Status.Ativo))
+                                                        {
+                                                            <img width="40" height="40" src="~/Images/FotosDePerfil/@comentario.Autor.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Nome" alt="avatar">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img width="40" height="40" src="~/Images/default-profile-pic.jpg" alt="avatar">
+                                                        }
+                                                        <h3>
+                                                            @Html.ActionLink(linkText: comentario.Autor.Nome, actionName: nameof(UsuarioController.Perfil), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { usuarioID = comentario.Autor.ID }, htmlAttributes: null)
+                                                        </h3>
+                                                        <span>
+                                                            <img src="images/clock.png" alt="">@{
+                                                                dataPostada = string.Empty;
+                                                                dataPostada = (DateTime.UtcNow.Subtract(comentario.Criado).Days <= 1 ? ($"Hoje às { comentario.Criado.ToLocalTime().ToString("HH:mm") }") : comentario.Criado.ToLocalTime().ToLongDateString());
+                                                            } @dataPostada
+                                                        </span>
+                                                    </div>
+                                                    <div class="row margin-soft">
+                                                        <div class="col-lg-12">
+                                                            <p class="col-lg-offset-1">
+                                                                @comentario.Conteudo
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             }
@@ -151,54 +192,42 @@
                             </div>
                         </div>
                         <div id="amigos" class="tab-pane fade in">
-                            <main>
-                                <div class="main-section">
-                                    <div class="container">
-                                        <div class="main-section-data">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-4 pd-left-none no-pd">
-                                                    <div class="posts-section">
-                                                        <ul class="post-bar">
-                                                            @foreach (var usuario in Model.Amigos)
-                                                            {
-                                                                <li class="usy-dt alert alert-info margin-sides">
-                                                                    @if (usuario.Fotos != null && usuario.Fotos.Any(_ => _.Status == Core.Enums.Status.Ativo))
-                                                                    {
-                                                                        <img width="50" height="50" src="~/Images/FotosDePerfil/@usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Nome" alt="avatar">
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <img width="50" height="50" src="~/Images/default-profile-pic.jpg" alt="avatar">
-                                                                    }
-                                                                    <div class="usy-name">
-                                                                        <h3>
-                                                                            @Html.ActionLink(linkText: usuario.Nome, actionName: nameof(UsuarioController.Perfil), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { usuarioID = usuario.ID }, htmlAttributes: null)
-                                                                        </h3>
-                                                                        <span>@usuario.Descricao</span>
-                                                                    </div>
-                                                                    @if (Model.PodeEditar)
-                                                                    {
-                                                                        <div class="col-lg-offset-11">                                 
-                                                                                @Html.ActionLink(linkText: " ", actionName: nameof(UsuarioController.DesfazerAmizade), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { convidadoID = usuario.ID }, htmlAttributes: new { @class = "fas fa-user-minus btn add-friend-button" })                                                                         
-                                                                        </div>
-                                                                    }
-                                                                </li>
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                            <div class="posts-section">
+                                <ul class="post-bar">
+                                    @foreach (var usuario in Model.Amigos)
+                                    {
+                                        <li class="usy-dt alert alert-info margin-sides">
+                                            @if (usuario.Fotos != null && usuario.Fotos.Any(_ => _.Status == Core.Enums.Status.Ativo))
+                                            {
+                                                <img width="50" height="50" src="~/Images/FotosDePerfil/@usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Nome" alt="avatar">
+                                            }
+                                            else
+                                            {
+                                                <img width="50" height="50" src="~/Images/default-profile-pic.jpg" alt="avatar">
+                                            }
+                                            <div class="usy-name">
+                                                <h3>
+                                                    @Html.ActionLink(linkText: usuario.Nome, actionName: nameof(UsuarioController.Perfil), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { usuarioID = usuario.ID }, htmlAttributes: null)
+                                                </h3>
+                                                <span>@usuario.Descricao</span>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </main>
+                                            @if (Model.PodeEditar)
+                                            {
+                                                <div class="col-lg-offset-10">
+                                                    @Html.ActionLink(linkText: " ", actionName: nameof(UsuarioController.DesfazerAmizade), controllerName: nameof(UsuarioController).Replace("Controller", ""), routeValues: new { convidadoID = usuario.ID }, htmlAttributes: new { @class = "fas fa-user-minus btn add-friend-button" })
+                                                </div>
+                                            }
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </main>
+
 
 @Html.Partial("Editar");
 
@@ -215,5 +244,13 @@
     $("#FotoDePerfil").change(function (e) {
         $('#sender').click();
     });
+
+
+    $(".job-status-bar.form-control").keydown(function (e) {
+        if (e.keyCode === 13) {
+            $(e.target.nextElementSibling).click();
+        }
+    });
+
 
 </script>

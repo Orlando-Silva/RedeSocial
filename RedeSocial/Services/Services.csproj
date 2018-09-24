@@ -43,13 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmizadeService.cs" />
+    <Compile Include="ComentarioService.cs" />
     <Compile Include="Construtores\ConstrutorAmizade.cs" />
+    <Compile Include="Construtores\ConstrutorComentario.cs" />
     <Compile Include="Construtores\ConstrutorPostagem.cs" />
     <Compile Include="Construtores\Core\Construtor.cs" />
     <Compile Include="Construtores\ConstrutorUsuario.cs" />
     <Compile Include="Construtores\ConstrutorFotoDePerfil.cs" />
     <Compile Include="FotoDePerfilService.cs" />
     <Compile Include="Interfaces\IAmizadeService.cs" />
+    <Compile Include="Interfaces\IComentarioService.cs" />
     <Compile Include="Interfaces\IFotoDePerfilService.cs" />
     <Compile Include="Interfaces\IPostagemService.cs" />
     <Compile Include="PostagemService.cs" />

@@ -11,6 +11,7 @@ namespace Core.ViewModels
         public Usuario Usuario { get; set; }
         public Postagem NovaPostagem { get; set; }
         public List<Postagem> Postagens { get; set; }
+        public Comentario Comentario { get; set; }
         #endregion
 
         #region --Construtor--

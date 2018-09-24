@@ -5,11 +5,6 @@ using DAL;
 using Services.Construtores;
 using Services.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 #endregion
 
@@ -28,7 +23,6 @@ namespace Services
 
         }
         #endregion
-
 
         public FotoDePerfil Buscar(int usuarioID) => UnidadeDeTrabalho.FotosDePerfil.BuscarPorUsuario(usuarioID);
 
