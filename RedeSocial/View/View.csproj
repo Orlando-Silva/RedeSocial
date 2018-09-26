@@ -143,6 +143,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\custombar.js" />
     <Content Include="Scripts\disabled.js" />
+    <Content Include="Scripts\gifsHelpers.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -187,6 +188,7 @@
     <Content Include="Views\Usuario\Perfil.cshtml" />
     <Content Include="Views\Usuario\Editar.cshtml" />
     <Content Include="Views\Usuario\BuscarUsuarios.cshtml" />
+    <Content Include="Views\Usuario\Proof.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

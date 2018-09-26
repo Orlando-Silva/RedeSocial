@@ -315,10 +315,8 @@ header {
     }
 
 .cute-house {
-
     font-size: 34px;
     color: #efefef;
-
 }
 
 .ask-question {
@@ -1740,6 +1738,44 @@ main {
     cursor: pointer;
 }
 
+.comment-input-row > i {
+    margin-top: 5px;
+}
+
+.expand-gif-search, .expand-gif-search-comment {
+    margin-top: 6.5px;
+}
+
+.choose-me {
+    border-radius: 0px !important;
+    max-width:200px;
+}
+
+td > .choose-me,
+td > .choose-me-post {
+    max-width: 100px;
+}
+
+.expandable-input {
+    display: block;
+    padding: 6px 12px;
+    min-height: 34px;
+    height: auto;
+    color: #555;
+    vertical-align: middle;
+    border-bottom: 1px solid #e6e6e6;
+    font-size: 14px;
+}
+
+.expandable-input-lg {
+    min-height: 100px;
+}
+
+.elders-scroll {
+    overflow-y: scroll;
+    height: 300px;
+}
+
 .slick-previous:hover:before,
 .slick-nexti:hover:before {
     background-color: #e44d3a;
@@ -2963,8 +2999,7 @@ footer {
     margin-top: -40px;
 }
 
-.margin-soft
-{
+.margin-soft {
     margin-top: 10px !important;
 }
 
@@ -3132,10 +3167,10 @@ footer {
 }
 
 .add-friend-button {
-    font-size:30px;
+    font-size: 30px;
 }
 
-.post-bar > li  {
+.post-bar > li {
     width: 48.5%;
 }
 

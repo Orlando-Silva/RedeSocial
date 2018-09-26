@@ -14,7 +14,12 @@ namespace Core.ViewModels
         public Comentario Comentario { get; set; }
         #endregion
 
-        #region --Construtor--
+        #region --Construtores--
+        public HomeViewModel()
+        {
+
+        }
+
         public HomeViewModel(Usuario usuario, List<Postagem> postagens)
         {
             Usuario = usuario;

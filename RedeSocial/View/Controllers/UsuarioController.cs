@@ -47,6 +47,9 @@ namespace View.Controllers
         public ActionResult Novo() => View();
 
         [HttpGet]
+        public ActionResult Proof() => View();
+
+        [HttpGet]
         public ActionResult Login(LoginViewModel _usuario) => View();
 
         [HttpGet]
@@ -175,14 +178,15 @@ namespace View.Controllers
         }
 
         [HttpPost]
-        public ActionResult Comentar(string comentario, string postagemID)
+        [ValidateInput(false)]
+        public ActionResult Comentar(string conteudoComentario, string postagemID)
         {
             try
             {
                 if (Usuario != null)
                 {
                     var postDecriptado = int.Parse(Seguranca.Decriptar(postagemID));
-                    ComentarioService.Adicionar(comentario, Usuario.ID, postDecriptado);
+                    ComentarioService.Adicionar(conteudoComentario, Usuario.ID, postDecriptado);
                     return Home();
                 }
                 else
@@ -270,6 +274,7 @@ namespace View.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Postar(HomeViewModel homeViewModel)
         {
             try

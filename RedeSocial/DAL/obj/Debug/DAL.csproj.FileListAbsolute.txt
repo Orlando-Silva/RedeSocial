@@ -11,9 +11,9 @@ C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.csprojAssemb
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.Migrations.InitialMigration.resources
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.Migrations.RemovendoDuplicidadeDeReferencia.resources
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.Migrations.RemovendoDuplicidadeDeReferenciaNasPostagens.resources
+C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.Migrations.RemovendoDuplicidadeDeReferenciaNosComentarios.resources
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.csproj.GenerateResource.cache
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.dll
 C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.pdb
-C:\Users\Orlan\Source\Repos\RedeSocial\RedeSocial\DAL\obj\Debug\DAL.Migrations.RemovendoDuplicidadeDeReferenciaNosComentarios.resources

@@ -99,7 +99,7 @@
                                             </div>
                                         </div>
                                         <div class="job_descp">
-                                            <p>@post.Corpo</p>
+                                            <p>@Html.Raw(post.Corpo)</p>
                                         </div>
                                         @using (Html.BeginForm(
                                                                                actionName: nameof(UsuarioController.Comentar),
@@ -107,11 +107,21 @@
                                                                                method: FormMethod.Post,
                                                                                htmlAttributes: null))
                                         {
-                                            <div class="job-status-bar">
-                                                <textarea id="comentario" name="comentario" class="job-status-bar form-control" placeholder="Pressione enter para enviar o comentário."></textarea>
-                                                <button type="submit" class="hidden"></button>
-                                                <input type="text" id="postagemID" name="postagemID" value="@Seguranca.Encriptar(post.ID.ToString())" class="hidden" />
+                                        <div class="job-status-bar">
+                                            <div class="container col-lg-12">
+                                                <div class="comment-input-row">
+                                                    <div contenteditable="true" class="expandable-input col-lg-10" data-container="body" data-toggle="popover" data-html="true" data-placement="bottom" id="comentario">
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <i tabindex="0" class="fas fa-image expand-gif-search"></i>
+                                                        <button id="buttonComentar" type="submit" class="btn btn-sm btn-primary pull-right">Comentar</button>
+                                                    </div>
+                                                    <input type="hidden" id="expandable" />
+                                                    <input type="text" id="conteudoComentario" name="conteudoComentario" class="hidden" />
+                                                </div>
                                             </div>
+                                            <input type="text" id="postagemID" name="postagemID" value="@Seguranca.Encriptar(post.ID.ToString())" class="hidden" />
+                                        </div>
                                         }
                                         @foreach (var comentario in post.Comentarios)
                                         {
@@ -139,7 +149,7 @@
                                                     <div class="row margin-soft">
                                                         <div class="col-lg-12">
                                                             <p class="col-lg-offset-1">
-                                                                @comentario.Conteudo
+                                                                @Html.Raw(comentario.Conteudo)
                                                             </p>
                                                         </div>
                                                     </div>

@@ -1,0 +1,149 @@
+﻿<h2>Proof</h2>
+
+
+<div class="container col-lg-12">
+    <div class="comment-input-row">
+        <div contenteditable="true" class="expandable-input col-lg-11" data-container="body" data-toggle="popover" data-html="true" data-placement="bottom" id="comentario">
+        </div>
+        <i tabindex="0" class="fas fa-image col-lg-1 expand-gif-search"></i>
+        <input type="hidden" id="expandable" />
+    </div>
+</div>
+
+
+<style>
+
+    .comment-input-row > i {
+        margin-top:5px;
+    }
+
+    .expandable-input {
+        display: block;
+        padding: 6px 12px;
+        min-height: 34px;
+        height: auto;
+        width: 200px;
+        color: #555;
+        vertical-align: middle;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        font-size: 14px;
+        line-height: 1.428571429;
+    }
+
+    .elders-scroll {
+        overflow-y: scroll;
+        height: 300px;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $(document).on('keydown', '#gifsearch', function (e) {
+
+            var apiKey = "fiemt6ulZaEDnhtYYXNzQgNvnYCS387D";
+            var searchQuery = $("#gifsearch").val().replace(" ", "+");
+
+            if (e.which === 13 || e.keyCode === 13) {
+
+                $.ajax({
+                    url: 'http://api.giphy.com/v1/gifs/search?q=' + searchQuery + '&api_key=' + apiKey + '&limit=25',
+                    async: true,
+                    method: "GET",
+                    success: function (response) {
+                        PopulateGifSearchResult(response.data);
+                    },
+                    error: function (error) {
+                        alert('Erro ao procurar Gifs: ' + error + '.');
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '.choose-me', function (e) {
+
+            $(e.target).clone().appendTo("#comentario");
+            $("#comentario").popover('hide');
+
+        });
+
+        $(document).on("submit", "form#new_expandable", function (e) {
+            e.preventDefault();
+
+            var contents = $(".expandable-input").html();
+
+            $('input#expandable').val(contents);
+            this.submit();
+        });
+
+        $(document).on('click', '.expand-gif-search', function (e) {
+
+            $("#comentario").popover({
+
+                content: '<input type="text" id="gifsearch" placeholder="Procure um Gif" class= "form-control" /><br/><div class="gif-results"></div>'
+
+            });
+
+            $("#comentario").popover('show');
+
+            $('.popover-dismiss').popover({
+                trigger: 'focus'
+            });
+        });
+
+    });
+
+
+    function PopulateGifSearchResult(data) {
+
+        var searchContent = '<div class="elders-scroll"> <table class="table">';
+
+        for (var i = 0; i < data.length; i++) {
+
+            if (i % 2 === 0) {
+                searchContent += '<tr>';
+            }
+
+            searchContent += '<td><img src="' + data[i].images.fixed_width_small.url + '" class="choose-me" /></td>';
+
+            if (i % 2 !== 0) {
+                searchContent += '</tr>';
+            }
+        }
+
+        searchContent += '</table></div>';
+
+        $(".gif-results").append(searchContent);
+
+    }
+
+    var span = $('<span>').css('display', 'inline-block')
+        .css('word-break', 'break-all')
+        .appendTo('body').css('visibility', 'hidden');
+    function initSpan(textarea) {
+        span.text(textarea.text())
+            .width(textarea.width())
+            .css('font', textarea.css('font'));
+    }
+    $('textarea').on({
+        input: function () {
+            var text = $(this).val();
+            span.text(text);
+            $(this).height(text ? span.height() : '1.1em');
+        },
+        focus: function () {
+            initSpan($(this));
+        },
+        keypress: function (e) {
+            if (e.which === 13) e.preventDefault();
+        }
+    });
+
+</script>
