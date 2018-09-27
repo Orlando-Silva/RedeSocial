@@ -199,6 +199,12 @@ namespace View.Controllers
                 return HttpNotFound(exception.Message);
             }
         }
+
+        public ActionResult Logout()
+        {
+            SessionHelper.DestruirSessao(Session);
+            return View(nameof(Login));
+        }
         #endregion
 
         #region --HTTP POST--
@@ -229,6 +235,7 @@ namespace View.Controllers
 
 
                 usuario = UsuarioService.Atualizar(usuario);
+                SessionHelper.DestruirSessao(Session);
                 UsuarioService.IniciarSessao(Session, usuario);
                 return Perfil(usuario.ID);
             }
@@ -245,9 +252,9 @@ namespace View.Controllers
             {
                 var usuarioID = int.Parse(Seguranca.Decriptar(perfilViewModel.PasseEncriptado));
                 string diretorio = Server.MapPath("~/Images/FotosDePerfil");
-                // TODO: Crop.
                 FotoDePerfilService.Adicionar(FotoDePerfil, usuarioID, diretorio);
                 var usuario = UsuarioService.BuscarPorID(usuarioID);
+                SessionHelper.DestruirSessao(Session);
                 UsuarioService.IniciarSessao(Session, usuario);
                 return Perfil(usuarioID);
             }
@@ -290,12 +297,6 @@ namespace View.Controllers
             {
                 return HttpNotFound(exception.Message);
             }
-        }
-
-        [HttpPost]
-        public ActionResult Logout(Usuario _usuario)
-        {
-            return View(nameof(Login));
         }
         #endregion
     }

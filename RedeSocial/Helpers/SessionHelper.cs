@@ -9,6 +9,11 @@ namespace Helpers
 {
     public class SessionHelper
     {
+        public static void DestruirSessao(HttpSessionStateBase sessao)
+        {
+            sessao.RemoveAll();
+        }
+
         public static void AdicionarNaSessao<T>(HttpSessionStateBase sessao, T entidade) where T : class
         {
             if (entidade is default(T))
