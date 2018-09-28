@@ -24,7 +24,7 @@
                             <div class="col-lg-6 user-edit-form">
                                 @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Nome, htmlAttributes: new { placeholder = "Nome Completo", name = "nome", type = "text", required = "required", @class = "form-control" })
                                 @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Telefone, htmlAttributes: new { placeholder = "Telefone", name = "telefone", type = "tel", required = "required", @class = "form-control" })
-                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.DataDeNascimento, htmlAttributes: new { placeholder = "Data de Nascimento", name = "dataDeNascimento", type = "date", required = "required", @class = "form-control" })
+                                @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.DataDeNascimento, htmlAttributes: new { placeholder = "Data de Nascimento", name = "dataDeNascimento", required = "required", @class = "datepicker form-control" })
                                 @Html.TextBoxFor(expression: _ => _.UsuarioEdicao.Pais, htmlAttributes: new { placeholder = "País", type = "text", @class = "form-control" })
                             </div>
                             <div class="col-lg-6 user-edit-form">
@@ -44,3 +44,14 @@
         </div>
     </div>
 }
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#UsuarioEdicao_Telefone").mask("(99) 9999-99999");
+        $("#UsuarioEdicao_DataDeNascimento").mask("99/99/9999");
+        $("#UsuarioEdicao_DataDeNascimento").datepicker();
+    });
+
+</script>

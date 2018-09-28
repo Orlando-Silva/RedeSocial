@@ -47,14 +47,13 @@ namespace Services
             var fotoDePerfil = new ConstrutorFotoDePerfil().Montar(arquivo,usuarioID, diretorio);
             SalvarNoServidor(arquivo, fotoDePerfil.Caminho);
 
-            var fotosAntigas = UnidadeDeTrabalho.FotosDePerfil.BuscarTodos();
-            foreach(var foto in fotosAntigas)
+            var usuario = UnidadeDeTrabalho.Usuarios.Buscar(usuarioID);
+
+            foreach(var foto in usuario.Fotos)
             {
                 Inativar(foto.ID);
             }
-            UnidadeDeTrabalho.FotosDePerfil.Adicionar(fotoDePerfil);
 
-            var usuario = UnidadeDeTrabalho.Usuarios.Buscar(usuarioID);
             new ConstrutorUsuario(usuario).ComFoto(fotoDePerfil);
 
             UnidadeDeTrabalho.Encerrar();

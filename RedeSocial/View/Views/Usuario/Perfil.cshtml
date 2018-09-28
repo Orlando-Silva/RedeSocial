@@ -49,7 +49,7 @@
                                             {
                                                 if (Model.Usuario.Fotos != null && Model.Usuario.Fotos.Any())
                                                 {
-                                                    <img width="110" height="110" src="~/Images/FotosDePerfil/@Model.Usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Caminho" alt="Avatar">
+                                                    <img width="110" height="110" src="~/Images/FotosDePerfil/@Model.Usuario.Fotos.First(_ => _.Status == Core.Enums.Status.Ativo).Nome" alt="Avatar">
                                                 }
                                                 else
                                                 {
@@ -97,6 +97,27 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            @if (Model.PodeEditar)
+                                            {
+                                                using (Html.BeginForm(
+                                                actionName: nameof(UsuarioController.AlterarStatusPost),
+                                                controllerName: nameof(UsuarioController).Replace("Controller", ""),
+                                                method: FormMethod.Post,
+                                                htmlAttributes: null))
+                                                {
+                                                    <div class="col-lg-offset-10">
+                                                        @if (post.Status == Core.Enums.Status.Ativo)
+                                                        {
+                                                            <button type="submit" class="btn btn-danger">Remover Postagem</button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" class="btn btn-primary">Reativar Postagem</button>
+                                                        }
+                                                    </div>
+                                                    <input id="PostId" name="PostId" class="hidden" value="@Seguranca.Encriptar(post.ID.ToString())" />
+                                                }
+                                            }
                                         </div>
                                         <div class="job_descp">
                                             <p>@Html.Raw(post.Corpo)</p>
@@ -107,21 +128,21 @@
                                                                                method: FormMethod.Post,
                                                                                htmlAttributes: null))
                                         {
-                                        <div class="job-status-bar">
-                                            <div class="container col-lg-12">
-                                                <div class="comment-input-row">
-                                                    <div contenteditable="true" class="expandable-input col-lg-10" data-container="body" data-toggle="popover" data-html="true" data-placement="bottom" id="comentario">
+                                            <div class="job-status-bar">
+                                                <div class="container col-lg-12">
+                                                    <div class="comment-input-row">
+                                                        <div contenteditable="true" class="expandable-input col-lg-10" data-container="body" data-toggle="popover" data-html="true" data-placement="bottom" id="comentario">
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <i tabindex="0" class="fas fa-image expand-gif-search"></i>
+                                                            <button id="buttonComentar" type="submit" class="btn btn-sm btn-primary pull-right">Comentar</button>
+                                                        </div>
+                                                        <input type="hidden" id="expandable" />
+                                                        <input type="text" id="conteudoComentario" name="conteudoComentario" class="hidden" />
                                                     </div>
-                                                    <div class="col-lg-2">
-                                                        <i tabindex="0" class="fas fa-image expand-gif-search"></i>
-                                                        <button id="buttonComentar" type="submit" class="btn btn-sm btn-primary pull-right">Comentar</button>
-                                                    </div>
-                                                    <input type="hidden" id="expandable" />
-                                                    <input type="text" id="conteudoComentario" name="conteudoComentario" class="hidden" />
                                                 </div>
+                                                <input type="text" id="postagemID" name="postagemID" value="@Seguranca.Encriptar(post.ID.ToString())" class="hidden" />
                                             </div>
-                                            <input type="text" id="postagemID" name="postagemID" value="@Seguranca.Encriptar(post.ID.ToString())" class="hidden" />
-                                        </div>
                                         }
                                         @foreach (var comentario in post.Comentarios)
                                         {

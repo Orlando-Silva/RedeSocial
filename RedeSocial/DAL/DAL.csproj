@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201809240058022_RemovendoDuplicidadeDeReferenciaNosComentarios.Designer.cs">
       <DependentUpon>201809240058022_RemovendoDuplicidadeDeReferenciaNosComentarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809280017193_LastFixes.cs" />
+    <Compile Include="Migrations\201809280017193_LastFixes.Designer.cs">
+      <DependentUpon>201809280017193_LastFixes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositórios\ComentarioRepositorio.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809240058022_RemovendoDuplicidadeDeReferenciaNosComentarios.resx">
       <DependentUpon>201809240058022_RemovendoDuplicidadeDeReferenciaNosComentarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809280017193_LastFixes.resx">
+      <DependentUpon>201809280017193_LastFixes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

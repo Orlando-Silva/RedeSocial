@@ -46,16 +46,18 @@ namespace Services
             return postagens;
         }
 
-        public Postagem Inativar(int postagemID)
+        public Postagem AlterarStatus(int postagemID, Status status)
         {
-            var postagem = UnidadeDeTrabalho.Postagens.Buscar(postagemID);
+            var postagem = UnidadeDeTrabalho.Postagens.Buscar(postagemID) ?? throw new ArgumentNullException();
 
             postagem = new ConstrutorPostagem(postagem)
-                        .ComStatus(Status.Ativo);
+                        .ComStatus(status);
 
             UnidadeDeTrabalho.Encerrar();
             return postagem;
-
         }
+
+        public Postagem Buscar(int id) => UnidadeDeTrabalho.Postagens.Buscar(id);
+
     }
 }

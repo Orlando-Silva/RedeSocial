@@ -21,7 +21,7 @@ namespace DAL.Contexto
         #region --Construtor--
         public RedeSocialContexto() : base("name=ConnectionStringlocalhost")
         {
-
+            Configuration.LazyLoadingEnabled = false;
         }
         #endregion
 

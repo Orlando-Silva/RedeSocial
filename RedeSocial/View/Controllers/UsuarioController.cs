@@ -224,6 +224,32 @@ namespace View.Controllers
         }
 
         [HttpPost]
+        public ActionResult AlterarStatusPost(string PostId)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(PostId))
+                {
+                    var id = 0;
+                    if (int.TryParse(Seguranca.Decriptar(PostId), out id))
+                    {
+                        var postagem = PostagemService.Buscar(id);
+
+                        if (postagem != null)
+                        {
+                            PostagemService.AlterarStatus(id, postagem.Status == Core.Enums.Status.Ativo ? Core.Enums.Status.Inativo : Core.Enums.Status.Ativo);
+                        }
+                    }
+                }
+                return Perfil(Usuario.ID);
+            }
+            catch (Exception exception)
+            {
+                return HttpNotFound(exception.Message);
+            }
+        }
+
+        [HttpPost]
         public ActionResult AtualizarDados(PerfilViewModel perfilViewModel)
         {
             try

@@ -39,7 +39,5 @@ namespace Core.Entidades
         public Status Status { get; set; }
 
         public IList<FotoDePerfil> Fotos { get; set; }
-
-        public IList<Comentario> Comentarios { get; set; }
     }
 }

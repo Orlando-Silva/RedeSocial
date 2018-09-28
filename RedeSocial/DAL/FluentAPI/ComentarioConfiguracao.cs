@@ -14,10 +14,8 @@ namespace DAL.FluentAPI
             Property(_ => _.Conteudo)
                     .HasMaxLength(600);
 
-            HasRequired(_ => _.Autor)
-                    .WithMany(_ => _.Comentarios)
-                    .HasForeignKey(_ => _.AutorID)
-                    .WillCascadeOnDelete(false);
+            HasRequired(_ => _.Autor);
+
         }
     }
 }

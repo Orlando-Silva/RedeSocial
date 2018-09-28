@@ -109,18 +109,6 @@ namespace Services.Construtores
             return this;
         }
 
-        public ConstrutorUsuario ComComentarios(IList<Comentario> comentarios)
-        {
-            Entidade.Comentarios = comentarios;
-            return this;
-        }
-
-        public ConstrutorUsuario NovoComentario(Comentario comentario)
-        {
-            Entidade.Comentarios.Add(comentario);
-            return this;
-        }
-
         public ConstrutorUsuario ComStatus(Status status)
         {
             Entidade.Status = status;
